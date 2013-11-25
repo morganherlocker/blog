@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  each post in posts
+    div
+      a(href='#{post.url}') #{post.title}

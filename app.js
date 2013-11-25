@@ -4,9 +4,12 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , index = require('./routes/index')
+  , posts = require('./routes/posts')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , fs = require('fs')
+  , _ = require('lodash')
 
 var app = express();
 
@@ -26,8 +29,22 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+app.get('/', index);
+app.get('/posts', posts)
+postInfos = []
+var i = 0
+fs.readdir(__dirname+'/posts/', function(err, files){
+  _.each(files, function(file){
+    fs.readFile(__dirname+'/posts/'+file, 'utf8', function(err, content){
+      var title = content.split('===')[0]
+      var url = title.split(' ').join('-')
+      postInfos.push({title: title, url: url})
+      if(i>file.length){
+        http.createServer(app).listen(app.get('port'), function(){
+          console.log('Express server listening on port ' + app.get('port'));
+        });
+      }
+      i++
+    })
+  })
+})
