@@ -1,6 +1,8 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top:25px;
+  font: 14px "Courier New", Helvetica, Arial, sans-serif;
 }
 
 a {

@@ -15,7 +15,13 @@ module.exports = function(req, res){
       })
     }
     else{
-      
+      console.log('POSTINFOS', postInfos)
+      var post = _.find(postInfos, {url: req.params.name})
+      console.log('POST!!!!', post)
+      fs.readFile(__dirname+'/../posts/'+post.id, 'utf8', function(err, content){
+        var htmlContent = marked(content)
+        res.render('index', {content: htmlContent});
+      })
     }
   })
 };
