@@ -30,14 +30,14 @@ app.get('/posts', posts)
 app.get('/post/:name', post)
 
 postInfos = []
-var i = 0
+var i = 1
 fs.readdir(__dirname+'/posts/', function(err, files){
   _.each(files, function(file){
     fs.readFile(__dirname+'/posts/'+file, 'utf8', function(err, content){
       var title = content.split('===')[0].replace(/(\r\n|\n|\r)/gm,"")
       var url = title.split(' ').join('-').replace(/(\r\n|\n|\r)/gm,"")
       postInfos.push({id: file, title: title, url: url})
-      if(i>file.length + 1){
+      if(i >= files.length){
         http.createServer(app).listen(app.get('port'), function(){
           console.log('Express server listening on port ' + app.get('port'));
         });
