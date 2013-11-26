@@ -1,6 +1,6 @@
 body {
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: 15%;
+  padding-right: 15%;
   padding-top:25px;
   font: 14px "Courier New", Helvetica, Arial, sans-serif;
 }
@@ -15,4 +15,8 @@ a {
   background-color:black;
   padding: 5px;
   color: white;
+}
+
+footer {
+  padding-top: 20px;
 }
