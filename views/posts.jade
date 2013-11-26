@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  h2 Posts
   each post in posts
-    div
+    div#posts
       a(href='/post/#{post.url}') #{post.title}

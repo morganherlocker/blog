@@ -2,7 +2,7 @@ body {
   padding-left: 25%;
   padding-right: 25%;
   padding-top:25px;
-  font: 14px "Courier New", Helvetica, Arial, sans-serif;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 @media screen and (max-width: 1000px){
@@ -28,5 +28,13 @@ body {
 }
 
 footer {
+  padding-top: 20px;
+}
+
+img {
+  width: 40%;
+}
+
+#posts {
   padding-top: 20px;
 }
