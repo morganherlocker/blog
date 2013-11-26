@@ -12,6 +12,8 @@ turf
 - creating TINs
 - creating contours around data
 
+<img src='https://raw.github.com/morganherlocker/turf/master/img/turf.png' style='width:110px'>
+
 ---
 
 **Their are many other gis engines out there so why did I build turf?**
@@ -36,6 +38,8 @@ turf
 
 - The project is open source under and MIT license, so anyone is free to do whatever they want with it. 
 - turf takes geojson, does its processing, and spits out new geojson. It does not do rendering. If you are looking to display the output of turf, I would recommend something like [QGIS](http://www.qgis.org/en/site/) on the desktop or [Leaflet](http://leafletjs.com/) for web apps.
+
+---
 
 **some examples:**
 
@@ -100,3 +104,7 @@ t.bezier(lineIn, 5000, .85, function(err, lineOut){
 ![jagged line](../img/jagged.jpg)
 
 ![smooth line](../img/smooth.jpg)
+
+---
+
+*11-26-13*
