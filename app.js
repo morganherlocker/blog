@@ -33,7 +33,9 @@ postInfos = []
 var i = 1
 fs.readdir(__dirname+'/posts/', function(err, files){
   _.each(files, function(file){
+    console.log(file)
     fs.readFile(__dirname+'/posts/'+file, 'utf8', function(err, content){
+      console.log(file)
       var title = content.split('===')[0].replace(/(\r\n|\n|\r)/gm,"")
       var url = title.split(' ').join('-').replace(/(\r\n|\n|\r)/gm,"")
       postInfos.push({id: file, title: title, url: url})

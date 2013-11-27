@@ -21,6 +21,8 @@ Whenever I get into a discussion about [turf](https://github.com/morganherlocker
 
 - focus on data analysis, instead of topological manipulations (turf will do many of these things, but the real goal is more complex data analysis like spatial clustering, contours, tins, data classification, etc.).
 
+- modularity: Eventually I plan to improve the build system so that each function can be packaged as its own npm module, similar to how underscore has been built. This is pretty trivial to add with some extra browserify configuration. This would allow someone who only needed one function to get the absolute minimum amount of code necessary, which is important for client side implementations.
+
 In summary, JSTS and turf have different goals. In some cases, it is an either/or, but in many cases they are complimentary libraries. Turf is first and foremost a spatial analysis utility belt focusing on the data contained in the attributes of geometries. JSTS is focused on geometric processing and topological manipulation.
 
 ---
