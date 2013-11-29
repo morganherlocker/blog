@@ -9,7 +9,7 @@ var express = require('express')
 
 var app = express();
 
-// all environments
+// all environment
 app.set('port', process.env.PORT || 80);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -33,13 +33,12 @@ postInfos = []
 var i = 1
 fs.readdir(__dirname+'/posts/', function(err, files){
   _.each(files, function(file){
-    console.log(file)
     fs.readFile(__dirname+'/posts/'+file, 'utf8', function(err, content){
-      console.log(file)
       var title = content.split('===')[0].replace(/(\r\n|\n|\r)/gm,"")
       var url = title.split(' ').join('-').replace(/(\r\n|\n|\r)/gm,"")
       postInfos.push({id: file, title: title, url: url})
       if(i >= files.length){
+        postInfos = _.sortBy(postInfos, 'id')
         http.createServer(app).listen(app.get('port'), function(){
           console.log('Express server listening on port ' + app.get('port'));
         });
