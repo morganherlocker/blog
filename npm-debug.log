@@ -1,0 +1,107 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'nodejs', '/usr/bin/npm', 'install', 'lodash' ]
+2 info using npm@1.2.12
+3 info using node@v0.8.21
+4 verbose read json /home/morgan/Documents/blog/package.json
+5 warn package.json application-name@0.0.1 No README.md file found!
+6 verbose read json /home/morgan/Documents/blog/node_modules/express/package.json
+7 verbose read json /home/morgan/Documents/blog/node_modules/marked/package.json
+8 verbose read json /home/morgan/Documents/blog/node_modules/jade/package.json
+9 verbose read json /home/morgan/Documents/blog/node_modules/lodash/package.json
+10 verbose from cache /home/morgan/Documents/blog/package.json
+11 verbose readDependencies using package.json deps
+12 verbose cache add [ 'lodash@~2.3.0', null ]
+13 verbose cache add name=undefined spec="lodash@~2.3.0" args=["lodash@~2.3.0",null]
+14 verbose parsed url { pathname: 'lodash@~2.3.0',
+14 verbose parsed url   path: 'lodash@~2.3.0',
+14 verbose parsed url   href: 'lodash@~2.3.0' }
+15 verbose cache add name="lodash" spec="~2.3.0" args=["lodash","~2.3.0"]
+16 verbose parsed url { pathname: '~2.3.0', path: '~2.3.0', href: '~2.3.0' }
+17 verbose addNamed [ 'lodash', '~2.3.0' ]
+18 verbose addNamed [ null, '>=2.3.0- <2.4.0-' ]
+19 silly lockFile 649d3979-lodash-2-3-0 lodash@~2.3.0
+20 verbose lock lodash@~2.3.0 /home/morgan/.npm/649d3979-lodash-2-3-0.lock
+21 silly addNameRange { name: 'lodash', range: '>=2.3.0- <2.4.0-', hasData: false }
+22 verbose url raw lodash
+23 verbose url resolving [ 'https://registry.npmjs.org/', './lodash' ]
+24 verbose url resolved https://registry.npmjs.org/lodash
+25 info trying registry request attempt 1 at 19:50:39
+26 http GET https://registry.npmjs.org/lodash
+27 http 200 https://registry.npmjs.org/lodash
+28 silly registry.get cb [ 200,
+28 silly registry.get   { vary: 'Accept',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R15B03)',
+28 silly registry.get     etag: '"9LJSGWFCK3LYXF412P1HOVNIL"',
+28 silly registry.get     date: 'Fri, 29 Nov 2013 00:50:40 GMT',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'content-length': '469896' } ]
+29 silly addNameRange number 2 { name: 'lodash', range: '>=2.3.0- <2.4.0-', hasData: true }
+30 silly addNameRange versions [ 'lodash',
+30 silly addNameRange   [ '0.1.0',
+30 silly addNameRange     '0.2.0',
+30 silly addNameRange     '0.2.1',
+30 silly addNameRange     '0.2.2',
+30 silly addNameRange     '0.3.0',
+30 silly addNameRange     '0.3.1',
+30 silly addNameRange     '0.3.2',
+30 silly addNameRange     '0.4.0',
+30 silly addNameRange     '0.4.1',
+30 silly addNameRange     '0.4.2',
+30 silly addNameRange     '0.5.0-rc.1',
+30 silly addNameRange     '0.5.0',
+30 silly addNameRange     '0.5.1',
+30 silly addNameRange     '0.5.2',
+30 silly addNameRange     '0.6.0',
+30 silly addNameRange     '0.6.1',
+30 silly addNameRange     '0.7.0',
+30 silly addNameRange     '0.8.0',
+30 silly addNameRange     '0.8.1',
+30 silly addNameRange     '0.8.2',
+30 silly addNameRange     '0.9.0',
+30 silly addNameRange     '0.9.1',
+30 silly addNameRange     '0.9.2',
+30 silly addNameRange     '0.10.0',
+30 silly addNameRange     '1.0.0-rc.1',
+30 silly addNameRange     '1.0.0-rc.2',
+30 silly addNameRange     '1.0.0-rc.3',
+30 silly addNameRange     '1.0.0',
+30 silly addNameRange     '1.0.1',
+30 silly addNameRange     '1.1.0',
+30 silly addNameRange     '1.1.1',
+30 silly addNameRange     '1.2.0',
+30 silly addNameRange     '1.2.1',
+30 silly addNameRange     '1.3.0',
+30 silly addNameRange     '1.3.1',
+30 silly addNameRange     '2.0.0',
+30 silly addNameRange     '2.1.0',
+30 silly addNameRange     '2.2.0',
+30 silly addNameRange     '2.2.1',
+30 silly addNameRange     '2.3.0',
+30 silly addNameRange     '2.4.0' ] ]
+31 verbose addNamed [ 'lodash', '2.3.0' ]
+32 verbose addNamed [ '2.3.0', '2.3.0' ]
+33 silly lockFile 29fac58c-lodash-2-3-0 lodash@2.3.0
+34 verbose lock lodash@2.3.0 /home/morgan/.npm/29fac58c-lodash-2-3-0.lock
+35 silly lockFile 6755bae3-pmjs-org-lodash-lodash-2-3-0-tgz https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz
+36 verbose lock https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz /home/morgan/.npm/6755bae3-pmjs-org-lodash-lodash-2-3-0-tgz.lock
+37 verbose addRemoteTarball [ 'https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz',
+37 verbose addRemoteTarball   'dfbdac99cf87a59a022c474730570d8716c267dd' ]
+38 silly lockFile 6755bae3-pmjs-org-lodash-lodash-2-3-0-tgz https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz
+39 silly lockFile 6755bae3-pmjs-org-lodash-lodash-2-3-0-tgz https://registry.npmjs.org/lodash/-/lodash-2.3.0.tgz
+40 silly lockFile 29fac58c-lodash-2-3-0 lodash@2.3.0
+41 silly lockFile 29fac58c-lodash-2-3-0 lodash@2.3.0
+42 silly lockFile 649d3979-lodash-2-3-0 lodash@~2.3.0
+43 silly lockFile 649d3979-lodash-2-3-0 lodash@~2.3.0
+44 error Error: EACCES, mkdir '/home/morgan/tmp/npm-3995'
+44 error  { [Error: EACCES, mkdir '/home/morgan/tmp/npm-3995'] errno: 3, code: 'EACCES', path: '/home/morgan/tmp/npm-3995' }
+45 error Please try running this command again as root/Administrator.
+46 error System Linux 3.5.0-24-generic
+47 error command "nodejs" "/usr/bin/npm" "install" "lodash"
+48 error cwd /home/morgan/Documents/blog
+49 error node -v v0.8.21
+50 error npm -v 1.2.12
+51 error path /home/morgan/tmp/npm-3995
+52 error code EACCES
+53 error errno 3
+54 error stack Error: EACCES, mkdir '/home/morgan/tmp/npm-3995'
+55 verbose exit [ 3, true ]
