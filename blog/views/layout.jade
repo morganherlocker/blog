@@ -16,11 +16,10 @@ html
   body
     span
       h2
-        a#home(href='/') ~/morgan_herlocker
-      a(href='https://twitter.com/morganherlocker') twitter
-      span(style='padding:5px')
-      a(href='https://github.com/morganherlocker') github
-      span(style='padding:5px')
+        a#home(href='/') #{config.name}
+      each link in config.links
+        a(href='#{link.href}') #{link.a}
+        span(style='padding:5px')
       a(href='/posts') other posts
     block content
   footer
