@@ -1,0 +1,39 @@
+Visualizing npm modules Around the World
+===
+
+***mapping npm modules by geography***
+
+@substack compiled npm modules by city here:
+
+https://gist.github.com/substack/7373338
+
+I did some processing on the data. Here is the repo with the data in various stages:
+
+https://github.com/morganherlocker/geo-npm-contributions
+
+Here is the geojson of the final output:
+
+https://github.com/morganherlocker/geo-npm-contributions/blob/master/final.geojson
+
+And here is a shot of the US, themed using a natural breaks jenks classification algorithm:
+
+<img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/us.jpg' style='width:100%'>
+
+And here is a shot of the world:
+
+<img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/world.jpg' style='width:100%'>
+
+
+A few notes on the data:
+
+- This was just for fun, so the data is far from perfect. To perform the geocoding, I simply did a join against the largest and most complete world city dataset I could find in the open data realm. I did some basic data formatting to get this to line up, but there all sorts of ways this could fail. Still, the results were decent on that front.
+
+- The images I provided show what the data looks like with some theming. Github map preview is awesome for the quick view, but if you really want to do some visualizations, I recommend opening up the data in a real GIS application like QGIS and applying some themes. I classified and normalized the data already, so this should be pretty simple.
+
+- It would be very interesting to see a visualization of this data weighted against population to get a "modules per capita" score of some sort. I may do this, but if anyone is interested, have at it!
+
+- If we could get some sort of dependency graph across npm and do a rough join on this data, we could visualize dependencies across geography with weighted desire lines. That could be extremely interesting. :)
+
+---
+
+12-6-13
