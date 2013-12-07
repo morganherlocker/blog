@@ -3,7 +3,7 @@ Visualizing npm modules by Geography
 
 [npm](https://npmjs.org/) is the node.js package manager. Coders from all over the world publish javascript packages through npm to distribute easy to consume modules, and it is [growing fast](http://modulecounts.com/). 
 
-[@substack](https://github.com/substack) took up the task of [compiling npm modules by city using npm module authors cross referenced against listed github locations](https://gist.github.com/substack/7373338#file-cities-L109) and the results were intriguing. 
+[@substack](https://github.com/substack) took up the task of [compiling npm modules by city] using npm module authors cross referenced against listed github locations (https://gist.github.com/substack/7373338#file-cities), and the results were intriguing. 
 
 This data lacked geo references, and it was begging to be visualized, so I did some processing on the data. Here is the repo with the data in various stages:
 
