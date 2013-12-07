@@ -1,7 +1,7 @@
-Visualizing npm modules by Geography
+Visualizing npm modules Around the World
 ===
 
-@substack compiled npm modules by city here:
+[@substack](https://github.com/substack) compiled npm modules by city here:
 
 https://gist.github.com/substack/7373338
 
@@ -28,9 +28,11 @@ A few notes on the data:
 
 - The images I provided show what the data looks like with some theming. Github map preview is awesome for the quick view, but if you really want to do some visualizations, I recommend opening up the data in a real GIS application like QGIS and applying some themes. I classified and normalized the data already, so this should be pretty simple.
 
+- Jenks classification is a generous visualiztion for any city that is not San Francisco or Oakland. They clearly dominate, and if you use a classification methodolgy like quantiles or equal intervals, they light up while every other city fades out of the visualization for the most part. I chose jenks because, SV is clearly and outlier and I wanted to show a distribution that emphasized the spread of the community. Perhaps this is a bit disingenuous, but hey, that's statistics for you. :)
+
 - It would be very interesting to see a visualization of this data weighted against population to get a "modules per capita" score of some sort. I may do this, but if anyone is interested, have at it!
 
-- If we could get some sort of dependency graph across npm and do a rough join on this data, we could visualize dependencies across geography with weighted desire lines. That could be extremely interesting. :)
+- If we could get some sort of dependency graph across npm and do a rough join on this data, we could visualize dependencies across geography with weighted desire lines. That could be extremely interesting.
 
 ---
 
