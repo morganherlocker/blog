@@ -13,7 +13,7 @@ Here is the geojson of the final output:
 
 https://github.com/morganherlocker/geo-npm-contributions/blob/master/final.geojson
 
-And here is a shot of the US, themed using a natural breaks jenks classification algorithm:
+And here is a shot of the US, themed using a [natural breaks jenks classification](http://en.wikipedia.org/wiki/Jenks_natural_breaks_optimization) algorithm:
 
 <img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/us.jpg' style='width:100%'>
 
