@@ -17,6 +17,10 @@ And here is a shot of the US, themed using a [natural breaks jenks classificatio
 
 <img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/us.jpg' style='width:100%'>
 
+Here is a shot of the US with a heatmap over an open street map basemap:
+
+<img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/heatmap_osm.jpg' style='width:100%'>
+
 And here is a shot of the world:
 
 <img src='https://raw.github.com/morganherlocker/geo-npm-contributions/master/world.jpg' style='width:100%'>
