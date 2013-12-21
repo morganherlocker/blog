@@ -74,3 +74,5 @@ t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
   console.log(polys)
 })
 ```
+
+Want to get involved with turf? Check out the [turf github page](https://github.com/morganherlocker/turf).
