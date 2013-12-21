@@ -5,6 +5,10 @@ body {
   font: 18px "Sans-Serif", Helvetica, Arial, sans-serif;
 }
 
+code {
+  font: 16px "Sans-Serif", Helvetica, Arial, sans-serif;
+}
+
 @media screen and (max-width: 1000px){
   body{
     padding-left: 15%;
