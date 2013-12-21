@@ -1,7 +1,7 @@
-turf aggregation
+Spatial Aggregation using turf
 ===
 
-[turf](https://github.com/morganherlocker/turf) has some recent improvements. Aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, min, and max. 
+[turf](http://morganherlocker.com/post/turf) has seen some recent improvements. Aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, min, and max. 
 
 Each of these have a simple interface that works with a feature collection of polygons, a feature collection of points, an in field, and an out field. Here is an example of summing population values of points within some polygons:
 
