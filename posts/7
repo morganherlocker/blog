@@ -1,7 +1,7 @@
-Spatial Aggregation using turf
+Spatial Data Aggregation using turf
 ===
 
-[turf](http://morganherlocker.com/post/turf) has seen some recent improvements. Aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, min, and max. 
+[turf](http://morganherlocker.com/post/turf) has seen some recent improvements. Data aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, min, and max. 
 
 Each of these have a simple interface that works with a feature collection of polygons, a feature collection of points, an in field, and an out field. Here is an example of summing population values of points within some polygons:
 
@@ -31,7 +31,7 @@ t.sum(polyFC, ptFC, 'population', 'pop_sum', function(err, averaged){
 })
 ```
 
-Often times, you may need to aggregate many values at once. In these cases, you can use the aggregate function and provide an array of aggregations to be performed. This adds significant convenience for common spatial aggregations:
+Often times, you may need to aggregate many fields at once. In these cases, you can use the aggregate function and provide an array of aggregations to be performed. This adds significant convenience for common spatial data aggregations:
 
 ```javascript
 var t = require('turf')
@@ -76,3 +76,7 @@ t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
 ```
 
 Want to get involved with turf? Check out the [turf github page](https://github.com/morganherlocker/turf).
+
+---
+
+12-21-13
