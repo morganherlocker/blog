@@ -85,7 +85,6 @@ var aggregations = [
 
 t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
   if(err) throw err
-  // each poly now has a pop_sum, pop_avg, pop_median, pop_min, and pop_max field
   console.log(polys)
 })
 ```
