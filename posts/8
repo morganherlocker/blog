@@ -1,0 +1,30 @@
+merge a FeatureCollection
+===
+
+[turf](http://morganherlocker.com/post/turf) has added quite a few features centered around spatial transformations recently. Mostly these types of operations center around tasks such as merging a bunch of polygons, or erasing one polygon from another. 
+
+There are lots of code examples in the docs, and the usage is very straightforward for anyone familiar with javascript and geojson. 
+
+To highlight one of these examples, here is how you would easily merge a feature collection of polygons together (since this example uses the filesystem, this needs to be in node.js, but if you had the objects in memory, it could be used in the browser):
+
+```javascript
+var t = require('../index'),
+  fs = require('fs')
+
+t.load('../test/testIn/mergeIn.geojson', function(err, polygons){
+  t.merge(polygons, function(err, mergeOut){
+    if(err) throw err
+    fs.writeFileSync('./testOut/merge.geojson', JSON.stringify(mergeOut))
+    mergeOut.should.be.ok
+    done()
+  })
+})
+```
+
+Here is a shot of the [polygon inputs](https://github.com/morganherlocker/turf/blob/master/test/testIn/mergeIn.geojson):
+
+<img src='../img/mergeIn.jpg' style='width:100%'>
+
+And here is the [result](https://github.com/morganherlocker/turf/blob/master/test/testOut/merge.geojson):
+
+<img src='../img/mergeOut.jpg' style='width:100%'>
