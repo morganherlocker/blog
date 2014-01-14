@@ -1,6 +1,7 @@
 var express = require('express')
   , posts = require('./routes/posts')
   , post = require('./routes/post')
+  , about = require('./routes/about')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
@@ -27,6 +28,7 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res){res.redirect('/post/recent')});
 app.get('/posts', posts)
 app.get('/post/:name', post)
+app.get('/about', about)
 
 config = {}
 postInfos = []
