@@ -9,7 +9,6 @@ var t = require('turf')
 t.load('../test/testIn/convexIn.geojson', function(err, points){
   t.convex(points, function(err, hull){
     if(err) throw err
-    fs.writeFileSync('./testOut/convex.geojson', JSON.stringify(hull))
     console.log(hull)
   })
 })
