@@ -1,7 +1,7 @@
-Creating Concave Hulls
+Creating Concave Hulls in Javascript
 ===
 
-[turf](https://github.com/morganherlocker/turf)(a general purpose gis processing engine written in node.js) makes it easy to create concave polygons from a set of points.
+[turf](https://github.com/morganherlocker/turf) (a general purpose gis processing engine written in node.js) makes it easy to create concave polygons from a set of points.
 
 ```javascript
 var t = require('turf')
