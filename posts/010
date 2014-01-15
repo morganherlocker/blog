@@ -7,7 +7,7 @@ Creating Concave Hulls in Javascript
 var t = require('turf')
 var maxEdge = 2.5
 
-t.load('../test/testIn/convexIn.geojson', function(err, points){
+t.load('../test/testIn/concaveIn.geojson', function(err, points){
   t.concave(points, maxEdge, function(err, hull){
     if(err) throw err
     console.log(hull)
