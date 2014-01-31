@@ -44,4 +44,20 @@ Merging a set of polygons with turf is pretty straight forward.
   })
   ```
 
-  <img src='/img/world_merge.jpg' style='width:100%'>
+And [here is the result](https://github.com/morganherlocker/turf-world-merge/blob/master/world.geojson):
+
+<img src='/img/world_merge.jpg' style='width:100%'>
+
+
+I packaged this all up into a github repo if you want to clone it an try it out. To test out the code do:
+
+```bash
+git clone https://github.com/morganherlocker/turf-world-merge.git
+cd turf-world-merge
+npm install
+node index.js
+```
+
+---
+
+*1-30-14*
