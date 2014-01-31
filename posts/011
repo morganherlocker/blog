@@ -1,7 +1,7 @@
 Merging Polygons with node.js
 ===
 
-Merging a set of polygons with turf is pretty straight forward. 
+Merging a set of polygons with [turf](https://github.com/morganherlocker/turf) is pretty straight forward. 
 
 1. Get your [polygon features into a feature collection](https://github.com/morganherlocker/turf-world-merge/blob/master/countries.geojson) like so:
 
@@ -49,7 +49,7 @@ And [here is the result](https://github.com/morganherlocker/turf-world-merge/blo
 <img src='/img/world_merge.jpg' style='width:100%'>
 
 
-I packaged this all up into a github repo if you want to clone it an try it out. To test out the code do:
+I packaged this all up i[nto a github repo](https://github.com/morganherlocker/turf-world-merge) if you want to clone it an try it out. To test out the code do:
 
 ```bash
 git clone https://github.com/morganherlocker/turf-world-merge.git
