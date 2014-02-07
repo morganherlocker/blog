@@ -36,3 +36,7 @@ fs.writeFileSync(__dirname+'/out/sc_pov_choloropleth.geojson',
 Now the results are in a file that we can [upload to a gist](https://gist.github.com/morganherlocker/8867604#file-sc_counties_poverty_styled-geojson) or include in a gtihub repo.
 
 <img src='/img/poverty_styled.jpg' style='width:100%'>
+
+---
+
+*2-7-14*
