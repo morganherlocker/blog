@@ -3,7 +3,7 @@ Geocolor Improvements
 
 ![charleston](../img/chas-geocolor.jpg)
 
-I have made some signifagant improvements to geocolor over the last week. The api is more flexible now, and I have added support for random coloring as well as custom style options.
+I have made some signifagant improvements to [geocolor](https://github.com/morganherlocker/geocolor) over the last week. The api is more flexible now, and I have added support for random coloring as well as custom style options.
 
 ```js
 var geocolor = require('geocolor')
