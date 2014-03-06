@@ -44,6 +44,10 @@ Much like with TDD, the big upside to RDD is that it forces you to do something 
 
 On large projects, this could very well be a horrible idea. For one, a readme is a terrible way to store documentation of a huge project.  After a certain amount of functionality, it is just going to be too long and difficult to navigate.  Also, large and complex projects tend to have lots of moving parts, and it is often difficult to know if the way you are designing the api is even possible before really digging in. This leads to the nightmarish design driven waterfall of the bad ol' days.
 
+###Modules
+
+Times are changing though. There is a huge push going on right now towards modular composition-- the idea that functionality can be built a la carte from a hive of distributed modules, rather than from giant frameworks. In this unixy style, a readme should almost always be enough. While that particular holy war is far from settled, modular design has proven itself to be at least one viable option, and one which is particularly well suited for the RDD approach.
+
 ---
 
 *3-6-14*
