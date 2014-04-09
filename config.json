@@ -2,6 +2,10 @@
   "name": "~/morgan_herlocker",
   "links": [
     {
+      "a": "about",
+      "href": "/about"
+    },
+    {
       "a": "twitter",
       "href": "https://twitter.com/morganherlocker"
     },
