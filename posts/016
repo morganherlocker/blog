@@ -1,0 +1,29 @@
+unixy geo
+===
+
+Create a 5 mile buffer around all households, merge the polygons, and output a geojson file representing populated areas.
+
+```sh
+cat households.geojson |
+turf_buffer --distance 5 --units "miles" |
+turf_merge >
+populated_areas.geojson
+```
+
+Crunch some stats on counties, given block census data.
+
+```sh
+cat counties.geojson |
+turf_sum --points block_points.geojson --z "population" --out_field "population_sum" |
+turf_avg --points block_points.geojson --z "median_income" --out_field "median_income_avg" |
+geocolor --classification "quantiles" --z "median_income_avg" --breaks 5 --colors red,yellow,green |
+geojsonio
+```
+
+Create a contour map given a set of elevation points, then pipe the results into geojson.io
+
+```sh
+cat elevation_pts.geojson |
+turf-isolines --z "elevation" --resolution 40 --breaks 0,500,2000,5000,10000 |
+geojsonio
+```
