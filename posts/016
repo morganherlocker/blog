@@ -7,7 +7,7 @@ For example, turf is focused exclusively on geojson data, but if you could pipe 
 
 The main goal here is to support easy geospatial analysis on the largest number of platforms possible, like node.js, shell, and client-side javascript. In the future, I would even like to have some sort of geo-proc server that can serve this functionality over http (maybe even with clustered load balancing), which would allow geoprocessing in languages that have not received much attention in the past.
 
-For now though, here is a list of possible usages I would like to support. Please provide feedback @morganherlocker if you have any thoughts on improvements to the general workflow. Keep in mind that all of the turf functionality will still be available in node.js and browser js for those not familiar with shell scripting, so nothing is lost by adding a cli.
+For now though, here is a collection of possible usages I would like to support. Please provide feedback [@morganherlocker](https://twitter.com/morganherlocker) if you have any thoughts on improvements to the general workflow. Keep in mind that all of the turf functionality will still be available in node.js and browser js for those not familiar with shell scripting, so nothing is lost by adding a cli.
 
 ---
 
