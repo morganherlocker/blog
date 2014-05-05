@@ -8,7 +8,7 @@ module.exports = function(req, res){
   fs.readdir(__dirname+'/../../posts/', function(err, files){
     console.log(req.params)
     if(req.params.name === 'recent'){
-      var recentName = files[files.length - 1]
+      var recentName = files[0]
       fs.readFile(__dirname+'/../../posts/'+recentName, 'utf8', function(err, content){
         var htmlContent = marked(content)
         res.render('index', {content: htmlContent});
