@@ -3,5 +3,5 @@ var fs = require('fs'),
     _ = require('lodash')
 
 module.exports = function(req, res){
-  res.render('posts', {config: config, posts: postInfos});
+  res.render('posts', {config: config, posts: postInfos.reverse()});
 };
