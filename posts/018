@@ -9,11 +9,11 @@ The maps can be saved to the desktop as geojson files, or shared as [full screen
 
 There are several ways to [classify data](https://github.com/morganherlocker/geocolor#classification), and custom styles can be added such as stroke width, fill opacity, or [maki markers](https://www.mapbox.com/maki/).
 
-The code is fully [open source](https://github.com/morganherlocker/geocolor) under the MIT License. Along with the web app, geocolor is also a javascript module that can be used in node.js or in the browser to make your own custom apps.
+The code is fully [open source](https://github.com/morganherlocker/geocolor) under the MIT License. Along with the web app, geocolor is also a javascript module that can be used in node.js or in the browser to make your own custom apps or scripts.
 
 ![geocolor rivers](../img/geocolor-rivers.JPG)
 ![geocolor us choloropleth](../img/geocolor-us.JPG)
 
 ---
 
-*5/8/2014*
+*5/9/2014*
