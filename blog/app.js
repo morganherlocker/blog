@@ -50,6 +50,7 @@ fs.readFile(__dirname + '/../config.json', function(err, data) {
                 })
                 if (i >= files.length) {
                     postInfos = _.sortBy(postInfos, 'id').reverse()
+                    console.log(JSON.stringify(postInfos, null, 2))
                     http.createServer(app).listen(app.get('port'), function() {
                         console.log('Express server listening on port ' + app.get('port'));
                     });

@@ -3,19 +3,19 @@ var fs = require('fs'),
     marked = require('marked'),
     _ = require('lodash')
 
-module.exports = function(req, res){
-  // get first 5 posts
-  fs.readdir(__dirname+'/../../posts/', function(err, files){
+module.exports = function(req, res) {
+  // get first post
+  fs.readdir(__dirname + '/../../posts/', function(err, files) {
     console.log(req.params)
-    if(req.params.name === 'recent'){
-      var recentName = files[0]
-      fs.readFile(__dirname+'/../../posts/'+recentName, 'utf8', function(err, content){
+    if (req.params.name === 'recent') {
+      console.log(files)
+      var recentName = files[0 - 1]
+      fs.readFile(__dirname + '/../../posts/' + recentName, 'utf8', function(err, content) {
         var htmlContent = marked(content)
-        res.render('index', {content: htmlContent});
+        res.render('index', {
+            content: htmlContent
+        });
       })
-    }
-    else{
-      
     }
   })
 };
