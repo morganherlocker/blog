@@ -6,9 +6,9 @@ I am coming into the final stretch of [fully modularizing turf](https://github.c
 - Lodash is gone
 - Async is gone
 - simple-statistics stays (it is only 42kb unminified, and seems justified considering how much it is used)
-- JSTS is gone. I have decided to take the JSTS code and extract the bare minimum for each of the [transformation modules](https://github.com/morganherlocker/turf#transformation). This will allow me to gradually refactor the code to a more literate style, without having to spend 6 months writing all of these algos from scratch and retaining the ability to release turf. Also, other [work has been in progress to refactor these algos for geodesic calculations](https://github.com/morganherlocker/turf/issues/110), instead of 2d planar geometry.
+- JSTS is gone. I have decided to take the JSTS code and extract the bare minimum for each of the [transformation modules](https://github.com/morganherlocker/turf#transformation). This will allow me to gradually refactor the code to a more literate style, without having to spend 6 months writing all of these algos from scratch and retaining the ability to release turf. Also, other [work has been in progress to refactor these algos for geodesic calculations](https://github.com/morganherlocker/turf/issues/110), instead of 2d planar geometry thanks to the hard work of [@adamdrago](https://twitter.com/adamdrago).
 - Topojson is gone. Topojson should be its own thing, and the turf topo function was just a wrapper. I was using it for simplification, but I will be switching that over to [mourner's implementation](https://github.com/mourner/simplify-js). It will probably lose topology preservation, but users can always use the topojson version if they can swallow the overhead (mostly d3). I am still exploring this, however, so suggestions are welcome.
-- Internal dependencies stay, but I will document best practices with npm-dedupe for optimizing custom builds
+- Internal dependencies stay, but I will document best practices with npm-dedupe for optimizing custom builds.
 
 This has all been quite a bit of work, but I think the payoff will be huge. After the modules are complete:
 
