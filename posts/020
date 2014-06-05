@@ -5,7 +5,7 @@ Turf Goes Modular
 
 - Dependencies like lodash and async.js have been removed.
 
-- Tests have been switched from running on [mocha](http://visionmedia.github.io/mocha/) to [tape](http://www.macwright.org/2014/03/11/tape-is-cool.html) for easy browser testing. Tap uses the [Test Anything Protocol](http://testanything.org/), which is more "unix"-y and integrates with many cli tools like [faucet](https://github.com/substack/faucet).
+- Tests have been switched from running on [mocha](http://visionmedia.github.io/mocha/) to [tape](http://www.macwright.org/2014/03/11/tape-is-cool.html) for easy browser testing. Tape uses the [Test Anything Protocol](http://testanything.org/), which integrates with many cli tools like [faucet](https://github.com/substack/faucet).
 
 - Every turf function has been broken into its own seperate module, so you can install what you need and nothing else.
 
