@@ -15,7 +15,7 @@ Turf Goes Modular
 
 This release has been a multi-month process, and represents an effort to make turf work better in resource constained environments and in the browser. Turf's main goal has always been to make a geo stats engine that is easy to install and easy to use, and I think this goes a long way towards that objective.
 
-As always, feature requests are welcome, so [drop us a line if you have an idea for use case](https://github.com/Turfjs/turf/issues?state=open).
+As always, feature requests are welcome, so [drop us a line if you have an idea for use case for a new feature](https://github.com/Turfjs/turf/issues?state=open).
 
 Special thanks to the many contributors to this push, especially [@tmcw](https://twitter.com/tmcw) and [@adamdrago](https://twitter.com/adamdrago).
 
