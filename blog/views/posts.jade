@@ -1,8 +1,0 @@
-extends layout
-
-block content
-  hr
-  h2 Posts
-  each post in posts
-    div#posts
-      a(href='/post/#{post.url}') #{post.title}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="geojson2">geojson2</h1>
+<p><a href="https://github.com/morganherlocker/geojson2">geojson2</a> is a node.js utility module for exporting geojson files to various other formats. At release, it supports the following formats and may have more to come in the future:</p>
+<ul>
+<li>kml</li>
+<li>csv</li>
+<li>shapefile</li>
+<li>topojson</li>
+</ul>
+<p>The module is extremely easy to use.</p>
+<pre><code class="lang-javascript">geojson2.csv(__dirname+&#39;/in.geojson&#39;, 
+             __dirname+&#39;/out.csv&#39;, 
+             function(err){
+
+})
+geojson2.shp(__dirname+&#39;/in.geojson&#39;, 
+             __dirname+&#39;/out.shp&#39;, 
+             false, 
+             function(err){
+
+})
+geojson2.kml(__dirname+&#39;/in.geojson&#39;, 
+             __dirname+&#39;/out.kml&#39;, 
+             function(err){
+
+})
+geojson2.topojson(__dirname+&#39;/in.geojson&#39;, 
+                  __dirname+&#39;/out.topojson&#39;, 
+                  function(err){
+
+})
+</code></pre>
+<p>All of these functions are also maintained as independent modules, and can be used on their own. </p>
+<p><strong>If you would like to request additional formats, please submit an issue on github: </strong></p>
+<p><a href="https://github.com/morganherlocker/geojson2/issues">https://github.com/morganherlocker/geojson2/issues</a></p>
+<hr>
+<p><em>12-6-13</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

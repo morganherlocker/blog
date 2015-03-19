@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="spatial-data-aggregation-using-turf">Spatial Data Aggregation using turf</h1>
+<p><a href="http://morganherlocker.com/post/turf">turf</a> has seen some recent improvements. Data aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, median, min, max, count, deviation, and variance. </p>
+<p>Each of these have a simple interface that works with a feature collection of polygons, a feature collection of points, an in field, and an out field. Here is an example of summing population values of points within some polygons:</p>
+<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+
+// Setup some points and polys. These are created using turf&#39;s helper 
+// functions, but any valid geojson feature collections would work.
+
+var poly1 = t.polygon([[[0,0],[10,0],[10,10], [0,10]]])
+var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
+var polyFC = t.featurecollection([poly1, poly2])
+var pt1 = t.point(1,1, {population: 500})
+var pt2 = t.point(1,3, {population: 400})
+var pt3 = t.point(14,2, {population: 600})
+var pt4 = t.point(13,1, {population: 500})
+var pt5 = t.point(19,7, {population: 200})
+var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
+
+// Pass the collections with the point field to be summed, and the name
+// of the field to append to the polygon properties.
+t.sum(polyFC, ptFC, &#39;population&#39;, &#39;pop_sum&#39;, function(err, averaged){
+  if(err) throw err
+
+  console.log(averaged.features[0].properties.pop_sum) // 900
+  console.log(averaged.features[1].properties.pop_sum) // 1300
+})
+</code></pre>
+<p>Often times, you may need to aggregate many fields at once. In these cases, you can use the aggregate function and provide an array of aggregations to be performed. This adds significant convenience for common spatial data aggregations:</p>
+<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+
+var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
+var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
+var polyFC = t.featurecollection([poly1, poly2])
+var pt1 = t.point(5,5, {population: 200})
+var pt2 = t.point(1,3, {population: 600})
+var pt3 = t.point(14,2, {population: 100})
+var pt4 = t.point(13,1, {population: 200})
+var pt5 = t.point(19,7, {population: 300})
+var ptFC = t.featurecollection([pt1, pt2, pt3, pt4, pt5])
+var aggregations = [
+  {
+    aggregation: &#39;sum&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_sum&#39;
+  },
+  {
+    aggregation: &#39;average&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_avg&#39;
+  },
+  {
+    aggregation: &#39;median&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_median&#39;
+  },
+  {
+    aggregation: &#39;min&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_min&#39;
+  },
+  {
+    aggregation: &#39;max&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_max&#39;
+  },
+  {
+    aggregation: &#39;count&#39;,
+    outField: &#39;point_count&#39;
+  },
+  {
+    aggregation: &#39;deviation&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_deviation&#39;
+  },
+  {
+    aggregation: &#39;variance&#39;,
+    inField: &#39;population&#39;,
+    outField: &#39;pop_variance&#39;
+  }
+]
+
+t.aggregate(polyFC, ptFC, aggregations, function(err, polys){
+  if(err) throw err
+  console.log(polys)
+})
+</code></pre>
+<p>Want to get involved with turf? Check out the <a href="https://github.com/morganherlocker/turf">turf github page</a>.</p>
+<hr>
+<p><em>12-21-13</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

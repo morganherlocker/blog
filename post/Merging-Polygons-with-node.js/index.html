@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="merging-polygons-with-node-js">Merging Polygons with node.js</h1>
+<p>Merging a set of polygons with <a href="https://github.com/morganherlocker/turf">turf</a> is pretty straight forward. </p>
+<ol>
+<li><p>Get your <a href="https://github.com/morganherlocker/turf-world-merge/blob/master/countries.geojson">polygon features into a feature collection</a> like so:</p>
+<p><img src='/img/countries_merge.jpg' style='width:100%'></p>
+</li>
+<li><p>Load the file into memory with node&#39;s fs module:</p>
+<pre><code class="lang-js">var require(&#39;turf&#39;)
+
+// load countries
+t.load(&#39;./countries.geojson&#39;, function(err, countries){
+
+})
+</code></pre>
+</li>
+<li><p>call turf&#39;s merge function:</p>
+<pre><code class="lang-js">t.merge(countries, function(err, world){
+
+})
+</code></pre>
+</li>
+<li><p>Lastly, write the file to disc or display it somewhere. Here it is all together:</p>
+<pre><code class="lang-js">var t = require(&#39;turf&#39;),
+   fs = require(&#39;fs&#39;)
+
+// load countries
+t.load(&#39;./countries.geojson&#39;, function(err, countries){
+ // merge the feature collection
+ t.merge(countries, function(err, world){
+   // write out the file
+   fs.writeFile(&#39;./world.geojson&#39;, JSON.stringify(world), function(err){
+     console.log(&#39;presto!&#39;)
+   })
+ })
+})
+</code></pre>
+</li>
+</ol>
+<p>And <a href="https://github.com/morganherlocker/turf-world-merge/blob/master/world.geojson">here is the result</a>:</p>
+<p><img src='/img/world_merge.jpg' style='width:100%'></p>
+<p>I packaged this all up i<a href="https://github.com/morganherlocker/turf-world-merge">nto a github repo</a> if you want to clone it an try it out. To test out the code do:</p>
+<pre><code class="lang-bash">git clone https://github.com/morganherlocker/turf-world-merge.git
+cd turf-world-merge
+npm install
+node index.js
+</code></pre>
+<hr>
+<p><em>1-30-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

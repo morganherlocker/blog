@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="building-effects-pedals-101">building effects pedals 101</h1>
+<p>This post is adapted from a steam of consciousness gist I wrote a while back for a friend interested in building guitar effects pedals. It is imperfect and incomplete... exactly how a writeup on analog audio hacking should be ;)</p>
+<p><strong>right off the bat:</strong></p>
+<ul>
+<li>start simple</li>
+<li>start with fuzz</li>
+<li>don&#39;t even bother looking at building an analog delay pedal yet :)</li>
+</ul>
+<h2 id="overview-of-electrical-components-">Overview of electrical components:</h2>
+<h3 id="resistors">Resistors</h3>
+<p><a href="http://en.wikipedia.org/wiki/Resistor">http://en.wikipedia.org/wiki/Resistor</a></p>
+<p>Resistors restrict the flow of electricity. The power of a resistor is measured in ohms. The more ohms, the less electricity flow.</p>
+<p><img src="http://develissimo.com/media/images/productimage-picture-resistor-set-carbon-film-84.jpg" alt="resistor"></p>
+<h3 id="potentiometers">Potentiometers</h3>
+<p><a href="http://en.wikipedia.org/wiki/Potentiometer">http://en.wikipedia.org/wiki/Potentiometer</a></p>
+<p>This is basically a resistor that can be turned up or down. They have a range of resistance that they can provide. A master volume knob is typically a potentiometer between the primary amp circuit and the speakers where 0 is enough ohms to completely cut the signal and 10 is the potentiometer completely turned off and providing no resistance.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/b/b5/Potentiometer.jpg" alt="potentiometer"></p>
+<h3 id="capacitors">Capacitors</h3>
+<p><a href="http://en.wikipedia.org/wiki/Capacitor">http://en.wikipedia.org/wiki/Capacitor</a></p>
+<p>This is almost like a mini battery that releases its charge when full. A capacitor can &quot;fill&quot; at a regular rate, which allows them to be used for timers. A capacitor in an effects pedal or a synth would typically be used to smooth out a signal or provide the &quot;pulse&quot; of the audio.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/8/86/Photo-SMDcapacitors.jpg" alt="Capacitors"></p>
+<h3 id="diodes">Diodes</h3>
+<p><a href="http://en.wikipedia.org/wiki/Diode">http://en.wikipedia.org/wiki/Diode</a></p>
+<p>A diode is used to make electricity flow only one way down a wire. Diodes are sensitive to heat, so be careful with your soldering iron around these or you will fry them. Also, don&#39;t send signal down the wrong direction. That will also fry them.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/2/24/Zener_Diode.JPG" alt="diodes"></p>
+<h3 id="transistors">Transistors</h3>
+<p><a href="http://en.wikipedia.org/wiki/Transistor">http://en.wikipedia.org/wiki/Transistor</a></p>
+<p>Transistors are used to amplify a signal. They always have 3 prongs. 1) the input signal (example: some audio from a guitar) 2) the control prong, which determines how much to amplify the signal and 3) the output signal.  Fuzz pedals exploit transistors by overloading them with way more electricity on the control prong than they are designed for, causing a &quot;clipping effect&quot;. This effect can be seen on an oscilloscope. Here&#39;s an example of that: </p>
+<p><img src="http://home.polstra.com/amps/wreck1/scope/IMG_0691.jpg" alt="http://home.polstra.com/amps/wreck1/scope/IMG_0691.jpg"></p>
+<p><img src="http://www.tandyonline.co.uk/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/b/c/bc635-transistor.png" alt="transistor"></p>
+<p><strong>I would highly recommend this as your first pedal/module:</strong></p>
+<p><a href="http://beavisaudio.com/bboard/projects/bbp_PWM.pdf">http://beavisaudio.com/bboard/projects/bbp_PWM.pdf</a> </p>
+<p><img src="http://www.hobby-hour.com/electronics/lm386-200.gif" alt=""></p>
+<p>This is a LM386 fuzz pedal. It is extremely cheap to build (you could probably do it for under 10 bucks), and you can buy 100% of the parts from RadioShack (or &quot;ratshack&quot; as it is affectionately referred to by audio hackers), so you don&#39;t have to wait around to ship a 3 cent diode from Hong Kong when you <strong>inevitably</strong> fry one. It will probably take you about an afternoon to build.</p>
+<h2 id="resources">resources</h2>
+<p>Great site with kits and build breakdowns:</p>
+<p><a href="https://www.smallbearelec.com/HowTos/HowTos.html">https://www.smallbearelec.com/HowTos/HowTos.html</a></p>
+<p>I do not know how active this guy is anymore, but he is a total badass and his project page is great inspiration:</p>
+<p><a href="http://beavisaudio.com/projects/">http://beavisaudio.com/projects/</a></p>
+<p>BYOC, a site that focuses on providing schematics for building clones of popular pedals:</p>
+<p><a href="http://buildyourownclone.com/">http://buildyourownclone.com/</a></p>
+<hr>
+<p><em>1-3-15</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

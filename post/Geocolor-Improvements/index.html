@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="geocolor-improvements">Geocolor Improvements</h1>
+<p><img src="/img/chas-geocolor.jpg" alt="charleston"></p>
+<p>I have made some signifagant improvements to <a href="https://github.com/morganherlocker/geocolor">geocolor</a> over the last week. The api is more flexible now, and I have added support for random coloring as well as custom style options.</p>
+<pre><code class="lang-js">var geocolor = require(&#39;geocolor&#39;)
+
+var cities = {
+  // geojson goes here
+}
+
+var colors = [&#39;green&#39;, &#39;red&#39;]
+
+var style = {
+  &#39;stroke&#39;: &#39;white&#39;,
+  &#39;fill-opacity&#39;: .4
+}
+
+geo = geocolor.random(cities, colors, style)
+</code></pre>
+<p>I have noticed that geojson performance in the browser (specifically github preview) takes a serious hit after ~500KB. Surprisingly, however, I have been able to share usable geojson all the way past 1MB. With proper simplification, this can represent a good bit of data. Below is a shot of west coast rivers colored by volume.</p>
+<p><img src="/img/rivers-geocolor.jpg" alt="rivers"></p>
+<p>Although geocolor is basically &quot;feature complete&quot; now, my next step is to explore more efficient rendering tools. Mike Bostock&#39;s <a href="http://bl.ocks.org/mbostock/8460692">bl.ocks.org</a> seems like a pretty good solution, and combined with a cli scaffolding tool, it could be a good way to pass geo visualizations around with larger amounts of data.</p>
+<p><img src="https://raw.github.com/morganherlocker/geocolor/master/img/Screen%20Shot%202014-03-04%20at%204.25.20%20PM.jpg" alt="sc-green-to-red">
+[South Carolina Counties colored from green to red by population]</p>
+<hr>
+<p><em>3-6-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="turf-browserify">turf + browserify</h1>
+<p>Turf has had a broken browser build for the past month or so. As of today, that is no longer the case. Now you can script geoprocessing tasks to your hearts content in the browser.</p>
+<p>That being said, there is still plenty of room for improvement on the browser front. The main issues are:</p>
+<ol>
+<li>The current minified file weighs in at ~700kb. Workable but painful.</li>
+<li>jsts is still pretty painful to debug when something goes wrong. Errors are unhandled, the code follows Java idioms, and it accounts for about 500kb of the total 700kb.</li>
+<li>If you use turf, you have to download the entire thing.</li>
+</ol>
+<p>There are a few remedies to these issues that are in progress.</p>
+<p>First, I am in the process of removing the jsts dependency.  jsts has lots of functionality and only a small fraction of it is actually used by turf.  The <a href="https://github.com/morganherlocker/clipsy">new solution</a> will probably be somewhere around 50kb, and will be easier to refactor and debug.</p>
+<p>Second, I am considering options for making turf modular. I want to balance the ease of use that turf currently provides, especially for its primary use case, as a simple server side geo scripting engine, against its use as a performant client-side engine. One way to accomplish this would be to implement a build step that would automatically create submodules for each of turf&#39;s functions. Another way would be to slowly port turf functions out to their own modules. My one fear with this is that it may lead to dependency bloat, but this may be mitigated by &#39;npm dedupe&#39;, assuming disipline is used in maintaining the same version of larger libs. Either way, this is a pretty high priority and there will be a way to download small chunks of turf in the future.</p>
+<hr>
+<p><em>3-18-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>
