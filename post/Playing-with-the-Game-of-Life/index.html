@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="playing-with-the-game-of-life">Playing with the Game of Life</h1>
+<p>Let me start this post by saying that if you have been around the block, you will probably find this pretty mundane. That said, I want to go over a classic game/hack/algorithm that every generation rediscovers.</p>
+<p>In 1970, mathematician <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> devised a simulation called the <a href="http://en.wikipedia.org/wiki/Conway&#39;s_Game_of_Life">the Game of Life</a>. It is a deceptively simple cellular automaton, that allows complex designs to arise from simple seed patterns.</p>
+<p><img src="http://fat.gfycat.com/RawOrneryFanworms.gif" alt="game of life gif"></p>
+<p>The beauty of this algorithm is in its simplicity. There are only a <a href="http://en.wikipedia.org/wiki/Conway&#39;s_Game_of_Life#Rules">few rules</a>:</p>
+<ol>
+<li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
+<li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+<li>Any live cell with more than three live neighbors dies, as if by overcrowding.</li>
+<li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+</ol>
+<p>From this, &quot;creatures&quot; will often emerge; the most well known being the glider. With these seed points...</p>
+<p><style>
+td {
+  border: 2px solid black;
+  width: 28px;
+}
+</style></p>
+<table>
+<tr><td></td><td>&nbsp;&nbsp;0</td><td></td></tr>
+<tr><td></td><td></td><td>&nbsp;&nbsp;0</td></tr>
+<tr><td>&nbsp;&nbsp;0</td><td>&nbsp;&nbsp;0</td><td>&nbsp;&nbsp;0</td></tr>
+</table>
+
+<p>...we end up with a pattern that will move across the grid until it runs into another set of live cells.</p>
+<p><img src="/img/gol-glider.gif" alt="game of life gif"></p>
+<p>Conway&#39;s Game of Life has been a mainstay of weekend hacks for ~45 years, and shows no signs of slowing down. There are countless variations, and new patterns are continuously being explored. One of the most impressive variations is SmoothLife, an implementation that modifies the rules to allow for continuous values, instead of the classic discrete rules.</p>
+<iframe width="420" height="315" src="//www.youtube.com/embed/KJe9H6qS82I" frameborder="0" allowfullscreen></iframe>
+
+<p><a href="https://github.com/morganherlocker/gol/blob/master/index.js">Here is the source</a> for my rough implementation that generated the first two gifs above. If you have never implemented it yourself, I highly recommend taking an hour or two sometime to write your own version from scratch. </p>
+<p><em>WARNING:</em> you will likely become obsessed with this game, and in extreme cases, may even find the urge to <a href="http://www.bay12forums.com/smf/index.php?topic=69307.0">build an implementation of GOL within a mechanical computing machine running inside of the game Dwarf Fortress</a>, a game that is itself, a sort of souped up version of GOL. You have been warned. \PSA</p>
+<hr>
+<p><em>6-17-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="unixy-geo">unixy geo</h1>
+<p>This post represents some hypothetical geo proc patterns I am hoping to enable in the next 3-6 months through a <a href="https://github.com/morganherlocker/turf/issues/104">major overhaul of turf</a>. There are awesome tools out there already for processing geospatial data from shell, but I want to make it significantly simpler than what current tools like GrassGIS and GDAL provide, while maintaining compatibility through common *nix conventions. </p>
+<p>For example, turf is focused exclusively on geojson data, but if you could pipe in the <a href="http://www.gdal.org/ogr/ogr_formats.html">plethora of files supported by ogr2ogr</a>, it would make things much more flexible, without having to port those huge libraries over to node (although that might be cool too).</p>
+<p>The main goal here is to support easy geospatial analysis on the largest number of platforms possible, like node.js, shell, and client-side javascript. In the future, I would even like to have some sort of geo-proc server that can serve this functionality over http (maybe even with clustered load balancing), which would allow geoprocessing in languages that have not received much attention in the past.</p>
+<p>For now though, here is a collection of possible usages I would like to support. Please provide feedback <a href="https://twitter.com/morganherlocker">@morganherlocker</a> if you have any thoughts on improvements to the general workflow. Keep in mind that all of the turf functionality will still be available in node.js and browser js for those not familiar with shell scripting, so nothing is lost by adding a cli.</p>
+<hr>
+<p>Create a 5 mile buffer around all households, merge the polygons, and output a geojson file representing populated areas.</p>
+<pre><code class="lang-sh">cat households.geojson |
+turf_buffer --distance 5 --units &quot;miles&quot; |
+turf_merge &gt;
+populated_areas.geojson
+</code></pre>
+<p>Crunch some stats on counties, given block census data.</p>
+<pre><code class="lang-sh">cat counties.geojson |
+turf_sum \
+  --points block_points.geojson \
+  --z &quot;population&quot; \
+  --out_field &quot;population_sum&quot; |
+turf_avg \
+  --points block_points.geojson \
+  --z &quot;median_income&quot; \
+  --out_field &quot;median_income_avg&quot; |
+geocolor \
+  --classification &quot;quantiles&quot; \
+  --z &quot;median_income_avg&quot; \
+  --breaks 5 \
+  --colors red,yellow,green |
+geojsonio
+</code></pre>
+<p>Create a contour map given a set of elevation points, then pipe the results into geojson.io.</p>
+<pre><code class="lang-sh">cat elevation_pts.geojson |
+turf-isolines \
+  --z &quot;elevation&quot; \
+  --resolution 40 \
+  --breaks 0,500,2000,5000,10000 |
+geojsonio
+</code></pre>
+<p>Merge counties to create a US file using redirects.</p>
+<pre><code class="lang-sh">turf-merge &lt; counties.geojson &gt; us.geojson
+</code></pre>
+<hr>
+<p><em>4-15-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

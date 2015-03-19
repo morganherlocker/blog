@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="badblog">badblog</h1>
+<p><a href="https://github.com/morganherlocker/badblog">badblog</a> is a terrible node.js blog engine with barely any features. :)</p>
+<p>Interested? While it probably will not be what most people are looking for, I wanted to use a blog engine that had the absolute minimum number of features, which for me meant:</p>
+<ul>
+<li>uses node.js (not for any reason other than it is my primary stack at the moment)</li>
+<li>posts are just markdown files</li>
+<li>no config files for posts</li>
+<li>pretty urls</li>
+<li>everything can be versioned through git</li>
+</ul>
+<p>There are a few other tools that are pretty close, but none that were exactly what I wanted, so I decided to write my own. </p>
+<p>It is exeptionally simple to use. Just do the following and you are up and running:</p>
+<pre><code class="lang-bash">npm install badblog -g
+badblog myBlog
+cd myBlog
+sudo npm start
+</code></pre>
+<p>You will then have a posts folder where you can throw in markdown files that will be loaded as posts whenever you restart the server. Use any of the various watcher tools out there and it would even be automatic. My blog is currently running on badblog in conjunction with <a href="https://github.com/nodejitsu/forever">forever</a>.</p>
+<hr>
+<p><em>12-2-13</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

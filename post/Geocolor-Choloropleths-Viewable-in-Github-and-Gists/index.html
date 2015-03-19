@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="geocolor-choloropleths-viewable-in-github-and-gists">Geocolor Choloropleths Viewable in Github and Gists</h1>
+<p>Github conveniently renders geojson and topojson files on the fly. This is useful for passing around geographic data and getting a quick look at what is in a file. They also <a href="https://github.com/blog/1772-diffable-more-customizable-maps">implement the simplestyle-spec</a>, which allows geojson data to contain information about how it should be rendered. </p>
+<p>This is useful for distinguishing between different types of points (parks vs airports), but since they allow for any arbitrary fill color, it also opens up more interesting possibilities. <a href="http://en.wikipedia.org/wiki/Choropleth_map">Choloropleths</a>, a type of thematic map, are one of those possibilities that help to better understand data trends in geographic data.</p>
+<p>Using the <a href="https://github.com/morganherlocker/geocolor">geocolor</a> module, geo data can be classified and themed easily to create these types of maps. The resulting geojson can then be added to a github repo or a gist and shared in an interactive format, something that would normally require GIS software or a custom web app (using something like <a href="http://d3js.org/">d3</a> or <a href="http://leafletjs.com/">leaflet</a>).</p>
+<p>Let&#39;s look at an example. In this case we have a set of <a href="https://gist.github.com/morganherlocker/8867604#file-sc_poverty_unstyled-geojson">counties in South Carolina, each with a poverty index</a>. </p>
+<p><img src='/img/poverty_unstyled.jpg' style='width:100%'></p>
+<p>First we install geocolor:</p>
+<pre><code class="lang-bash">npm install geocolor
+</code></pre>
+<p>Then we can use it in javascript. In this case we will classify the data using quantiles (although we can choose from <a href="https://github.com/morganherlocker/geocolor#classification">several other options</a>) and set the color ramp from blue to red. Any number of colors can be included in the color ramp (I recommend <a href="http://colorbrewer2.org/">colorbrewer</a> if you are looking for good ideas).</p>
+<p>Here is what the code should look like:</p>
+<pre><code class="lang-js">var fs = require(&#39;fs&#39;),
+    geocolor = require(&#39;geocolor&#39;)
+
+var geo = JSON.parse(fs.readFileSync(__dirname+&#39;/in/sc_pov.geojson&#39;))
+
+geo = geocolor(geo, &#39;poverty&#39;, &#39;quantile&#39;, 7, [&#39;blue&#39;, &#39;red&#39;])
+
+fs.writeFileSync(__dirname+&#39;/out/sc_pov_choloropleth.geojson&#39;, 
+                  JSON.stringify(geo))
+</code></pre>
+<p>Now the results are in a file that we can <a href="https://gist.github.com/morganherlocker/8867604#file-sc_counties_poverty_styled-geojson">upload to a gist</a> or include in a gtihub repo.</p>
+<p><img src='/img/poverty_styled.jpg' style='width:100%'></p>
+<hr>
+<p><em>2-7-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>

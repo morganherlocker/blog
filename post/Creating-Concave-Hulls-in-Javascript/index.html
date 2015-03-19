@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-46038987-1', 'morganherlocker.com');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+      <h1 id="creating-concave-hulls-in-javascript">Creating Concave Hulls in Javascript</h1>
+<p><a href="https://github.com/morganherlocker/turf">turf</a> (a general purpose gis processing engine written in node.js) makes it easy to create concave polygons from a set of points.</p>
+<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+var maxEdge = 2.5
+
+t.load(&#39;../test/testIn/concaveIn.geojson&#39;, function(err, points){
+  t.concave(points, maxEdge, function(err, hull){
+    if(err) throw err
+    console.log(hull)
+  })
+})
+</code></pre>
+<p>The above code will create a concave polygon for you with just one call, but I also want to give a brief look into how the algorithm actually works for my fellow gis engine tinkerers.</p>
+<p>We start with <a href="https://github.com/morganherlocker/turf/blob/master/test/testIn/concaveIn1.geojson">some points</a>:</p>
+<p><img src='/img/concavePoints.jpg' style='width:100%'></p>
+<p>From these points, we can create a TIN, which is a convex <a href="https://github.com/morganherlocker/turf/blob/master/test/testOut/tinConvcave.geojson">triangular mesh of polygons</a> using the <a href="https://github.com/morganherlocker/turf#tin">tin function</a>:</p>
+<p><img src='/img/concaveTin.jpg' style='width:100%'></p>
+<p>Based on the max edge parameter, we throw out any parts of the mesh that reach too far; measured using the <a href="https://github.com/morganherlocker/turf#distance">distance function</a>:</p>
+<p><img src='/img/concaveFiltered.jpg' style='width:100%'></p>
+<p>Next we buffer the triangles slightly and merge the results using the <a href="https://github.com/morganherlocker/turf#buffer">buffer</a> and <a href="https://github.com/morganherlocker/turf#merge">merge</a> functions:</p>
+<p><img src='/img/concaveOut1.jpg' style='width:100%'></p>
+<p>If we want a bit more detail, we can lower the maxEdge:</p>
+<p><img src='/img/concaveOut2.jpg' style='width:100%'></p>
+<p>For an extra smooth result, we can also add a bit of a <a href="https://github.com/morganherlocker/turf/blob/master/test/testOut/bufferConvcave.geojson">rounded buffer to the result</a> via the <a href="https://github.com/morganherlocker/turf#buffer">buffer function</a>:</p>
+<p><img src='/img/concaveOut3.jpg' style='width:100%'></p>
+<hr>
+<p><em>1-16-14</em></p>
+
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a>
+    </p>
+  </footer>
+</html>
