@@ -30,8 +30,8 @@ code {
   background-color:black;
   padding: 5px;
   color: white;
-  -webkit-transition: -webkit-transform 4s;
-  transition: transform 4s;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
   transition-property: box-shadow;
 }
 
