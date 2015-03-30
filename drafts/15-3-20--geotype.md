@@ -78,3 +78,7 @@ Keep in mind, this is a mad science hack. Aside from using geotype as a test dif
 *Now that that's out of the way, let's render a bunch of shit in ascii.*
 
 ![](/img/geotype8.gif)
+
+---
+
+*3-20-15*
