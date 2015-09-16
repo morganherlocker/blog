@@ -10,3 +10,7 @@ This is a map of locations extracted from digitized ships logs from 1750 to 1850
 It is a fairly unique dataset in both breadth and depth; covering 100 years of pre-industrial data, and containing often amusing notes recorded by sailors. The data contains numerous fields for various meterological measurments, and [one researcher was able to extract all mentions of naval battles](https://www.kaggle.com/domcastro/climate-data-from-ocean-ships/wars-and-fights-draft/discussion), including a tussle with "a sea-monster of indeterminable size".
 
 I have not done anything especially usefule with the database yet, but I wanted to share this map of the full dataset and encourage anyone interested in climate science or maritime history to give it a look.
+
+---
+
+*9-16-15*
