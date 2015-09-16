@@ -44,10 +44,10 @@ tiles.forEach(function(tile){
 })
 </code></pre>
 <p>Pipe these images to a static server like s3 and you have yourself a very minimal map tile server (and I mean minimal!).</p>
-<h2 id="question-round-up">question round up</h2>
-<h4 id="ok-so-really-why-">ok, so really.. why?</h4>
+<p>##question round up</p>
+<p>####ok, so really.. why?</p>
 <p>I built geotype 1 part as a fun hack and 1 part looking for a quick way to visualize test results. While working on <a href="http://turfjs.org">Turf</a> and various other geographic algorithm libraries, I find myself opening up GeoJSON data in QGIS or geojson.io hundreds of times a day. I wanted a way to speed up this feedback loop.</p>
-<h4 id="geotype-for-testing-">geotype for testing?</h4>
+<p>####geotype for testing?</p>
 <p>I see this working in two ways:</p>
 <ol>
 <li><p>geotype as a quick repl renderer. You have a script and you want to see the results quickly on the fly.</p>
@@ -55,9 +55,9 @@ tiles.forEach(function(tile){
 <li><p>A fuzzy diff tester. Geographic algorithms are notoriously difficult to test in a way that is not absurdly brittle. Using something like geotype, you might be able to save states of algorithmic output that can be compared against in the future. Facebook has experimented with comparing images for UI testing using <a href="https://github.com/facebookarchive/huxley">Huxley</a>; I think it could be reasonable to test changes in geography algorithms using a similar methodology. Tolerance control in testing is important, because having all your tests fail with unimportant changes leads to a &quot;boy who cried wolf&quot; view of tests. The opposite, &quot;everything broke and it threw an error&quot; is not sufficient for maintaining low level geographic systems.</p>
 </li>
 </ol>
-<h4 id="what-is-tile-cover-">what is tile-cover?</h4>
+<p>####what is tile-cover?</p>
 <p><a href="https://github.com/mapbox/tile-cover">tile-cover</a> is the geospatial indexer that powers the Mapbox geocoder, <a href="https://github.com/mapbox/carmen">Carmen</a> (carmen does a lot more than spatial indexing, but this is one key step). It is a pure JavaScript spatial indexer that can tell you which <a href="https://msdn.microsoft.com/en-us/library/bb259689.aspx">map tiles</a> cover a geometry at a given zoom level range. This is important for looking up shapes fast in a database, and tile-cover is particularly suited for doing this across distributed systems. It steals a bunch of ideas from <a href="http://en.wikipedia.org/wiki/Scanline_rendering">video games and old CRT displays</a> so that it can be as fast or faster than comprable libraries written in C++.</p>
-<h4 id="what-s-next-">what&#39;s next?</h4>
+<p>####what&#39;s next?</p>
 <p>geotype currently displays characters with 4 styles. Each character is either styled as a point, a line, a polygon, or null data. It would be cool to also allow for additional styling using something like <a href="https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0">simplestyle-spec</a>, which is supported by tools like <a href="http://geojson.io/">geojson.io</a>, <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a>, and the <a href="https://help.github.com/articles/mapping-geojson-files-on-github/#styling-features">Github map display</a>.</p>
 <hr>
 <p><em>3-26-15</em></p>
