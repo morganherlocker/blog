@@ -24,10 +24,10 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a>
       <h1 id="rdd">RDD</h1>
-<p>##[Readme Driven Development]</p>
+<h2 id="-readme-driven-development-">[Readme Driven Development]</h2>
 <p><img src="/img/rdd-tests.jpg" alt="tests"></p>
 <p>I am not the first to coin the phrase, but I am a firm believer in <a href="http://tom.preston-werner.com/2010/08/23/readme-driven-development.html">RDD</a>. The basic premise is that you employ the following pattern when developing a module:</p>
-<p>####readme &gt;&gt; tests &gt;&gt; code &gt;&gt; repeat</p>
+<h4 id="readme-tests-code-repeat">readme &gt;&gt; tests &gt;&gt; code &gt;&gt; repeat</h4>
 <p>It varies a bit from project to project, but my typical flow nowadays is something like this:</p>
 <ol style='background-color:lightgrey'>
   <li>
@@ -51,12 +51,12 @@ Encounter another edge case; goto 4.
 </ol>
 
 <p>It seems to work pretty well for me anyway.</p>
-<p>###Why?</p>
+<h3 id="why-">Why?</h3>
 <p>The readme is how users first interact with your modules. Before they install your module or call a single function, they are going to look at the readme file and ask <strong>&quot;Does this do what I want?&quot;</strong> and <strong>&quot;Does it do what I want elegantly?&quot;</strong>. Design your modules around what people are looking for in the readme, then make the code and tests serve that end.</p>
 <p>Much like with TDD, the big upside to RDD is that it forces you to do something immensly useful for your project, but which becomes more difficult to implement after the fact. With RDD, you get docs + tests every single time. Also, while TDD forces your code to conform to reasonable tests, RDD forces your code to also conform to reasonable docs. Non tested code usually leads to non testable code, and I think the same is true with docs; <strong>non-documented code leads to non-documentable code</strong>.</p>
-<p>###Caveats</p>
+<h3 id="caveats">Caveats</h3>
 <p>On large projects, this could very well be a horrible idea. For one, a readme is a terrible way to store documentation of a huge project.  After a certain amount of functionality, it is just going to be too long and difficult to navigate.  Also, large and complex projects tend to have lots of moving parts, and it is often difficult to know if the way you are designing the api is even possible before really digging in. This leads to the nightmarish design driven waterfall of the bad ol&#39; days.</p>
-<p>###Modules</p>
+<h3 id="modules">Modules</h3>
 <p>Times are changing though. There is a huge push going on right now towards modular composition-- the idea that functionality can be built a la carte from a hive of distributed modules, rather than from giant frameworks. In this unixy style, a readme should almost always be enough. While that particular holy war is far from settled, modular design has proven itself to be at least one viable option, and one which is particularly well suited for the RDD approach.</p>
 <hr>
 <p><em>3-6-14</em></p>

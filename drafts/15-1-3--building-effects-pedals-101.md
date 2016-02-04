@@ -9,9 +9,9 @@ This post is adapted from a steam of consciousness gist I wrote a while back for
 - don't even bother looking at building an analog delay pedal yet :)
 
 
-##Overview of electrical components:
+## Overview of electrical components:
 
-###Resistors
+### Resistors
 
 
 http://en.wikipedia.org/wiki/Resistor
@@ -20,7 +20,7 @@ Resistors restrict the flow of electricity. The power of a resistor is measured 
 
 ![resistor](http://develissimo.com/media/images/productimage-picture-resistor-set-carbon-film-84.jpg)
 
-###Potentiometers
+### Potentiometers
 
 http://en.wikipedia.org/wiki/Potentiometer
 
@@ -28,7 +28,7 @@ This is basically a resistor that can be turned up or down. They have a range of
 
 ![potentiometer](http://upload.wikimedia.org/wikipedia/commons/b/b5/Potentiometer.jpg)
 
-###Capacitors
+### Capacitors
 
 http://en.wikipedia.org/wiki/Capacitor
 
@@ -36,7 +36,7 @@ This is almost like a mini battery that releases its charge when full. A capacit
 
 ![Capacitors](http://upload.wikimedia.org/wikipedia/commons/8/86/Photo-SMDcapacitors.jpg)
 
-###Diodes
+### Diodes
 
 http://en.wikipedia.org/wiki/Diode
 
@@ -44,7 +44,7 @@ A diode is used to make electricity flow only one way down a wire. Diodes are se
 
 ![diodes](http://upload.wikimedia.org/wikipedia/commons/2/24/Zener_Diode.JPG)
 
-###Transistors
+### Transistors
 
 http://en.wikipedia.org/wiki/Transistor
 
@@ -62,7 +62,7 @@ http://beavisaudio.com/bboard/projects/bbp_PWM.pdf
 
 This is a LM386 fuzz pedal. It is extremely cheap to build (you could probably do it for under 10 bucks), and you can buy 100% of the parts from RadioShack (or "ratshack" as it is affectionately referred to by audio hackers), so you don't have to wait around to ship a 3 cent diode from Hong Kong when you **inevitably** fry one. It will probably take you about an afternoon to build.
 
-##resources
+## resources
 
 Great site with kits and build breakdowns:
 
