@@ -1,7 +1,7 @@
 Mapping Consensus
 ---
 
-![](img/consensus.png)
+![](/img/consensus.png)
 
 I have long been enamored with the idea of [joining and reconciling distributed datasets](https://twitter.com/morganherlocker/status/1063148961656070144). With the rise of machine learning in the mapping space, coupled with an ever increasing trend towards crowd sourced mapping (individuals, NGOs, and governments), finding the thread that ties these datasets together is more important than ever. There is more open data in the mapping space than anyone knows what to do with and it is being generated faster than centralized projects like OpenStreetMap are able to ingest it. For example, nearly a year ago, [Bing released an ML derived dataset of 125 million building footprints under an ODBL license](https://github.com/Microsoft/USBuildingFootprints), which is compatible with OpenStreetMap (UPDATE: another [12 million Canadian footprints](https://github.com/Microsoft/CanadianBuildingFootprints) were released [moments after I publish this piece](https://twitter.com/jharpster/status/1103739755278168065)). The data has yet to be imported due to a host of problems that arise when attempting to process so many changes at once. While maintenance burden is an oft-cited pain point, an even bigger problem is how to detect and resolve conflicts in the data. In other words, **_how do we come to consensus on our view of the world in the age of global scale sensor networks and competing entities exerting soft power through the map? Is it even possible?_**
 
