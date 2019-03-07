@@ -31,7 +31,7 @@
 <li><p>dead simple api. JSTS tends to follow Java idioms rather than node.js idioms (which is understandable, since it was a Java port). An example of this would be JSTS&#39;s use of factory patterns and complex object heirarchies vs turf&#39;s approach where everything is just a simple function. Another would be JSTS&#39;s more traditional api style vs turf&#39;s node callback style where the convention is to pass an asyncronous callback in the form of:</p>
 <pre><code class="lang-javascript">function(err, result) {
   // do stuff with the result
-}
+} 
 </code></pre>
 </li>
 <li><p>geojson from the ground up. This means you can load any geojson file into memory, pass it directly into any turf function, and get geojson back that can be directly displayed into a map. No complex data structures or SQL WKT parsing makes it easier to use, especially for web development.</p>

@@ -1,13 +1,16 @@
 {
   "version": "0.0.1",
   "scripts": {
-    "start": "watch 'babel-node build.js' --wait 1",
-    "build": "babel-node build.js"
+    "start": "watch 'node build.js' --wait 1",
+    "build": "node build.js"
   },
   "dependencies": {
     "glob": "^5.0.3",
-    "lodash": "~3.5.0",
+    "lodash": "^4.17.11",
     "marked": "~0.3.3",
     "rimraf": "^2.3.2"
+  },
+  "devDependencies": {
+    "watch": "^1.0.2"
   }
 }
