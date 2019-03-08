@@ -3,7 +3,24 @@ body {
   padding-right: 25%;
   padding-top:10px;
   font: 18px "", Helvetica, Arial, sans-serif;
-  line-height: 1.8
+  line-height: 1.8;
+  color: #494949;
+}
+
+h1,h2,h3,h4,h5 {
+  color: #383838;
+}
+
+strong {
+  color: #2c352d;
+}
+
+strong em {
+  color: #f54fff;
+}
+
+em {
+  color: #969696;
 }
 
 code {
@@ -25,7 +42,6 @@ code {
 }
 
 #home {
-  color: black; 
   text-decoration:none;
   background-color:black;
   padding: 5px;
