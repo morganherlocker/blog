@@ -66,6 +66,7 @@ drafts.slice(0,5).forEach(d => {
   rss += '<dc:creator>Morgan Herlocker</dc:creator>'
   rss += '<pubDate>' + date + '</pubDate>'
   rss += '<link>http://morganherlocker.com/post/'+d.url+'</link>'
+  rss += '<guid isPermaLink="true">http://morganherlocker.com/post/'+d.url+'</guid>'
   rss += '<description><![CDATA['+body+']]></description>'
   rss += '</item>'
 })
