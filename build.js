@@ -27,7 +27,7 @@ var drafts = glob.sync('./drafts/*').map(d => {
     content: html,
     copy: copy,
     file: file,
-    url
+    url: url
   }
 })
 drafts = _.sortBy(drafts, 'file').reverse()
@@ -58,13 +58,14 @@ rss += '<title>morganherlocker</title>'
 rss += '<link>http://morganherlocker.com</link>'
 rss += '<description>website of @morganherlocker</description>'
 drafts.slice(0,5).forEach(d => {
+  var body = marked(d.copy.split('===').slice(1).join(''))
   var date = d.file.split('--')[0].split('-')
   date = new Date(date[1]+'/'+date[2]+'/'+date[0]).toUTCString()
   rss += '<item>'
   rss += '<title>' + d.name + '</title>'
   rss += '<dc:creator>Morgan Herlocker</dc:creator>'
   rss += '<pubDate>' + date + '</pubDate>'
-  var body = marked(d.copy.split('===').slice(1).join(''))
+  rss += '<link>http://morganherlocker.com/post/'+d.url+'</link>'
   rss += '<description><![CDATA['+body+']]></description>'
   rss += '</item>'
 })
