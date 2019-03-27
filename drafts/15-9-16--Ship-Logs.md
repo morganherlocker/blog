@@ -1,5 +1,5 @@
 Ship Logs
----
+===
 
 This is a map of locations extracted from digitized ship logs from 1750 to 1850. The database was compiled by a number of researchers and [was made available](https://pendientedemigracion.ucm.es/info/cliwoc/) as a resource for studying historical climate change.
 

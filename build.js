@@ -25,6 +25,7 @@ var drafts = glob.sync('./drafts/*').map(d => {
   return {
     name: name,
     content: html,
+    copy: copy,
     file: file,
     url
   }
@@ -48,3 +49,25 @@ drafts.forEach(d => {
 })
 
 fs.writeFileSync('./index.html', _.first(drafts).content)
+
+fs.unlinkSync('./rss.xml')
+var rss = ''
+rss += '<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0">'
+rss += '<channel>'
+rss += '<title>morganherlocker</title>'
+rss += '<link>http://morganherlocker.com</link>'
+rss += '<description>website of @morganherlocker</description>'
+drafts.slice(0,5).forEach(d => {
+  var date = d.file.split('--')[0].split('-')
+  date = new Date(date[1]+'/'+date[2]+'/'+date[0]).toUTCString()
+  rss += '<item>'
+  rss += '<title>' + d.name + '</title>'
+  rss += '<dc:creator>Morgan Herlocker</dc:creator>'
+  rss += '<pubDate>' + date + '</pubDate>'
+  var body = marked(d.copy.split('===').slice(1).join(''))
+  rss += '<description><![CDATA['+body+']]></description>'
+  rss += '</item>'
+})
+rss += '</channel>'
+rss += '</rss>\n'
+fs.writeFileSync('./rss.xml', rss)

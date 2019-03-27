@@ -22,7 +22,8 @@
       <a href="/about">about</a><span style="padding:5px"></span>
       <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
-      <a href="/posts">posts</a>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
       {content}
   </body>
   <footer>
@@ -31,7 +32,8 @@
       <a href="/about">about</a><span style="padding:5px"></span>
       <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
-      <a href="/posts">posts</a>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
     </p>
   </footer>
 </html>
