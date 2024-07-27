@@ -16,13 +16,14 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="turf-vs-jsts">turf vs JSTS</h1>
+      <h1>turf vs JSTS</h1>
 <p>Whenever I get into a discussion about <a href="https://github.com/morganherlocker/turf">turf</a>, one question always comes up:</p>
 <pre><code>&quot;What about JSTS?&quot;
-</code></pre><p><a href="https://github.com/bjornharrtell/jsts">JSTS</a> [JavaScript Topology Suite] is an awesome project. turf may even depend on some of its code in the future. At the same time, it is far more complicated than turf, and the learning curve is much steeper than with turf. Here are the main things I would point to that distinguish turf from JSTS:</p>
+</code></pre>
+<p><a href="https://github.com/bjornharrtell/jsts">JSTS</a> [JavaScript Topology Suite] is an awesome project. turf may even depend on some of its code in the future. At the same time, it is far more complicated than turf, and the learning curve is much steeper than with turf. Here are the main things I would point to that distinguish turf from JSTS:</p>
 <ul>
 <li><p>dead simple api. JSTS tends to follow Java idioms rather than node.js idioms (which is understandable, since it was a Java port). An example of this would be JSTS&#39;s use of factory patterns and complex object heirarchies vs turf&#39;s approach where everything is just a simple function. Another would be JSTS&#39;s more traditional api style vs turf&#39;s node callback style where the convention is to pass an asyncronous callback in the form of:</p>
-<pre><code class="lang-javascript">function(err, result) {
+<pre><code class="language-javascript">function(err, result) {
   // do stuff with the result
 } 
 </code></pre>

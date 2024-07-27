@@ -1,7 +1,7 @@
 const glob = require('glob')
 const fs = require('fs')
 const rm = require('rimraf').sync
-const marked = require('marked')
+const marked = require('marked').parse
 const _ = require('lodash')
 
 const template = fs.readFileSync('./views/template', 'utf8')

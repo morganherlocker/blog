@@ -16,11 +16,11 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="playing-with-the-game-of-life">Playing with the Game of Life</h1>
+      <h1>Playing with the Game of Life</h1>
 <p>Let me start this post by saying that if you have been around the block, you will probably find this pretty mundane. That said, I want to go over a classic game/hack/algorithm that every generation rediscovers.</p>
-<p>In 1970, mathematician <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> devised a simulation called the <a href="http://en.wikipedia.org/wiki/Conway&#39;s_Game_of_Life">the Game of Life</a>. It is a deceptively simple cellular automaton, that allows complex designs to arise from simple seed patterns.</p>
+<p>In 1970, mathematician <a href="http://en.wikipedia.org/wiki/John_Horton_Conway">John Horton Conway</a> devised a simulation called the <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">the Game of Life</a>. It is a deceptively simple cellular automaton, that allows complex designs to arise from simple seed patterns.</p>
 <p><img src="http://fat.gfycat.com/RawOrneryFanworms.gif" alt="game of life gif"></p>
-<p>The beauty of this algorithm is in its simplicity. There are only a <a href="http://en.wikipedia.org/wiki/Conway&#39;s_Game_of_Life#Rules">few rules</a>:</p>
+<p>The beauty of this algorithm is in its simplicity. There are only a <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life#Rules">few rules</a>:</p>
 <ol>
 <li>Any live cell with fewer than two live neighbors dies, as if caused by under-population.</li>
 <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
@@ -28,12 +28,12 @@
 <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
 </ol>
 <p>From this, &quot;creatures&quot; will often emerge; the most well known being the glider. With these seed points...</p>
-<p><style>
+<style>
 td {
   border: 2px solid black;
   width: 28px;
 }
-</style></p>
+</style>
 <table>
 <tr><td></td><td>&nbsp;&nbsp;0</td><td></td></tr>
 <tr><td></td><td></td><td>&nbsp;&nbsp;0</td></tr>

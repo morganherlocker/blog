@@ -16,48 +16,53 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="merging-polygons-with-node-js">Merging Polygons with node.js</h1>
+      <h1>Merging Polygons with node.js</h1>
 <p>Merging a set of polygons with <a href="https://github.com/morganherlocker/turf">turf</a> is pretty straight forward. </p>
 <ol>
-<li><p>Get your <a href="https://github.com/morganherlocker/turf-world-merge/blob/master/countries.geojson">polygon features into a feature collection</a> like so:</p>
-<p><img src='/img/countries_merge.jpg' style='width:100%'></p>
-</li>
-<li><p>Load the file into memory with node&#39;s fs module:</p>
-<pre><code class="lang-js">var require(&#39;turf&#39;)
-
-// load countries
-t.load(&#39;./countries.geojson&#39;, function(err, countries){
-
-})
-</code></pre>
-</li>
-<li><p>call turf&#39;s merge function:</p>
-<pre><code class="lang-js">t.merge(countries, function(err, world){
-
-})
-</code></pre>
-</li>
-<li><p>Lastly, write the file to disc or display it somewhere. Here it is all together:</p>
-<pre><code class="lang-js">var t = require(&#39;turf&#39;),
-   fs = require(&#39;fs&#39;)
-
-// load countries
-t.load(&#39;./countries.geojson&#39;, function(err, countries){
- // merge the feature collection
- t.merge(countries, function(err, world){
-   // write out the file
-   fs.writeFile(&#39;./world.geojson&#39;, JSON.stringify(world), function(err){
-     console.log(&#39;presto!&#39;)
-   })
- })
-})
-</code></pre>
-</li>
+<li>Get your <a href="https://github.com/morganherlocker/turf-world-merge/blob/master/countries.geojson">polygon features into a feature collection</a> like so:</li>
 </ol>
+  <img src='/img/countries_merge.jpg' style='width:100%'>
+
+<ol start="2">
+<li>Load the file into memory with node&#39;s fs module:</li>
+</ol>
+<pre><code class="language-js">var require(&#39;turf&#39;)
+
+// load countries
+t.load(&#39;./countries.geojson&#39;, function(err, countries){
+  
+})
+</code></pre>
+<ol start="3">
+<li>call turf&#39;s merge function:</li>
+</ol>
+<pre><code class="language-js">t.merge(countries, function(err, world){
+
+})
+</code></pre>
+<ol start="4">
+<li>Lastly, write the file to disc or display it somewhere. Here it is all together:</li>
+</ol>
+<pre><code class="language-js">var t = require(&#39;turf&#39;),
+    fs = require(&#39;fs&#39;)
+
+// load countries
+t.load(&#39;./countries.geojson&#39;, function(err, countries){
+  // merge the feature collection
+  t.merge(countries, function(err, world){
+    // write out the file
+    fs.writeFile(&#39;./world.geojson&#39;, JSON.stringify(world), function(err){
+      console.log(&#39;presto!&#39;)
+    })
+  })
+})
+</code></pre>
 <p>And <a href="https://github.com/morganherlocker/turf-world-merge/blob/master/world.geojson">here is the result</a>:</p>
-<p><img src='/img/world_merge.jpg' style='width:100%'></p>
+<img src='/img/world_merge.jpg' style='width:100%'>
+
+
 <p>I packaged this all up i<a href="https://github.com/morganherlocker/turf-world-merge">nto a github repo</a> if you want to clone it an try it out. To test out the code do:</p>
-<pre><code class="lang-bash">git clone https://github.com/morganherlocker/turf-world-merge.git
+<pre><code class="language-bash">git clone https://github.com/morganherlocker/turf-world-merge.git
 cd turf-world-merge
 npm install
 node index.js

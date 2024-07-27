@@ -16,7 +16,7 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="turf">turf</h1>
+      <h1>turf</h1>
 <p><a href="https://github.com/morganherlocker/turf">turf</a> is a gis engine written 100% in javascript with minimal dependencies. It is written in node.js, but can be run browser side as well using browserify or bower. It&#39;s goal is to provide a simple library for performing common geospatial analysis tasks such as:</p>
 <ul>
 <li>buffering</li>
@@ -28,16 +28,19 @@
 <li>creating TINs</li>
 <li>creating contours around data</li>
 </ul>
-<p><img src='https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png' style='width:110px'></p>
+<img src='https://raw.githubusercontent.com/Turfjs/turf/9a1d5e8d99564d4080f1e2bf1517ed41d18012fa/logo.png' style='width:110px'>
+
 <hr>
 <p><strong>Their are many other gis engines out there so why did I build turf?</strong></p>
 <ol>
 <li><p>Many of the other engines are difficult to understand, as the docs and apis for most of these projects have become bloated and overly detailed. turf aims to have simple docs, and you should be able to perform just about any basic geospatial operation in a few lines of code. </p>
 </li>
 <li><p>These engines require significant server configuration to get running. turf is simple to install and use. Assuming you have node installed, just enter the following and you are on your way:</p>
-<pre><code class="lang-bash">npm install turf
-</code></pre>
 </li>
+</ol>
+<pre><code class="language-bash">npm install turf
+</code></pre>
+<ol start="3">
 <li><p>While server side processing is currently the norm, I wanted the ability to offload work to the browser as needed. Most standard gis operations in current client side frameworks actually depend upon calls to web services hosted by 3rd parties. This is less than ideal.</p>
 </li>
 <li><p>Geojson has become the defacto standard for geo data on the web. turf takes this to heart and is built from the ground up around geojson. Geojson is one of the only human readable geospatial formats, and anyone can understand it by reading the <a href="http://geojson.org/geojson-spec.html">spec</a> in a matter of minutes. Compare this to some of the other standards that rely on proprietary formats, multiple binaries, or incomprehensible XML.</p>
@@ -54,7 +57,7 @@
 <hr>
 <p><strong>some examples:</strong></p>
 <p>TIN:</p>
-<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+<pre><code class="language-javascript">var t = require(&#39;turf&#39;)
 var z = &#39;elevation&#39;
 
 t.load(&#39;/path/to/pointsfeatures/elevationPoints.geojson&#39;, function(err, points){
@@ -66,7 +69,7 @@ t.load(&#39;/path/to/pointsfeatures/elevationPoints.geojson&#39;, function(err, 
 </code></pre>
 <p><img src="/img/tin.jpg" alt="tin"></p>
 <p>contours:</p>
-<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+<pre><code class="language-javascript">var t = require(&#39;turf&#39;)
 var z = &#39;elevation&#39;
 var resolution = 15
 var breaks = [.1, 22, 45, 55, 65, 85,  95, 105, 120, 180]
@@ -80,7 +83,7 @@ t.load(&#39;../path/to/points.geojson&#39;, function(err, points){
 </code></pre>
 <p><img src="/img/contours.jpg" alt="contours"></p>
 <p>smoothing:</p>
-<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+<pre><code class="language-javascript">var t = require(&#39;turf&#39;)
 var resolution = 5000
 var intensity = .85
 var lineIn = t.linestring([

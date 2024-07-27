@@ -16,36 +16,36 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="geotype">geotype</h1>
+      <h1>geotype</h1>
 <p><a href="https://github.com/morganherlocker/geotype">Geotype</a> is a cli tool for rendering GeoJSON from the command line. While this might seem fairly ridiculous/pointless, it can actually be quite useful for quickly seeing what sort of geography is lurking inside a GeoJSON file. While tools like <a href="http://geojson.io/">geojson.io</a> and <a href="https://github.com/mapbox/geojsonio-cli">geojson-cli</a> provide a quick way to do this in the browser, a faster feedback loop is often helpful.</p>
 <p>Here&#39;s what it looks like in action. Given a GeoJSON file that contains something like this:</p>
 <p><img src="/img/world-geojson.png" alt=""></p>
 <p>...we can use geotype to render it like this:</p>
-<pre><code class="lang-sh">geotype world.geojson
+<pre><code class="language-sh">geotype world.geojson
 </code></pre>
 <p><img src="/img/geotype1.gif" alt=""></p>
 <p>Let&#39;s say we want something higher resolution, we can overzoom using the <code>--mod</code> flag.</p>
-<pre><code class="lang-sh">geotype world.geojson -m 4
+<pre><code class="language-sh">geotype world.geojson -m 4
 </code></pre>
 <p><img src="/img/geotype2.gif" alt=""></p>
 <p>Don&#39;t want color? Use the <code>--no-color</code> flag to render to plain old acii.</p>
-<pre><code class="lang-sh">geotype world.geojson -m 4 --no-color
+<pre><code class="language-sh">geotype world.geojson -m 4 --no-color
 </code></pre>
 <p><img src="/img/geotype3.gif" alt=""></p>
 <p>geotype can also distinguish between points, lines, and polygons. Here&#39;s how it renders a GeoJSON FeatureCollection containing all Vermont libraries (points), highways (lines), and zipcodes (polygons) with and without color.</p>
-<pre><code class="lang-sh">geotype vermont.geojson
+<pre><code class="language-sh">geotype vermont.geojson
 </code></pre>
 <p><img src="/img/geotype4.gif" alt=""></p>
 <p>The <code>--zoom -z</code> flag allows a pixel zoom to be specified. Each pixel is equivalent to one tile at the given zoom. Let&#39;s zoom in on our Vermont file with a simple bash for loop.</p>
-<pre><code class="lang-sh">for i in `seq 6 12`; do geotype vermont.geojson -z $i; done
+<pre><code class="language-sh">for i in `seq 6 12`; do geotype vermont.geojson -z $i; done
 </code></pre>
 <p><img src="/img/geotype5.gif" alt=""></p>
 <p>Use the <code>--bbox</code> flag to fit the ascii &quot;image&quot; to a specific bounding box, or use the <code>--tile</code> flag to fit the render to an x/y/z map tile. Let&#39;s cycle vertically across a column of tiles against our world.geojson file to try it out.</p>
-<pre><code class="lang-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 9; done
+<pre><code class="language-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 9; done
 </code></pre>
 <p><img src="/img/geotype6.gif" alt=""></p>
 <p>...at a higher zoom</p>
-<pre><code class="lang-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 11; done
+<pre><code class="language-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 11; done
 </code></pre>
 <p><img src="/img/geotype7.gif" alt=""></p>
 <p>##how it works</p>

@@ -16,15 +16,15 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="geojson2kml-geojson2shape">geojson2kml &amp; geojson2shape</h1>
+      <h1>geojson2kml &amp; geojson2shape</h1>
 <p>I released a couple new modules a few days ago and wanted to mention them. The purpose of both of these modules is to convert geojson files out to other formats. Although <a href="/turf">turf</a> has been my go to &quot;utility belt&quot; module for adding gis functionality, I want to keep in line with the *nix philosophy of small modules. With that in mind, interoperability is not the focus of turf, so these sorts of functions will be offloaded to modules like geojson2kml and geojson2shape.</p>
 <p><a href="https://github.com/morganherlocker/geojson2shape">geojson2shape</a> takes a geojson file and outputs a collection of files that make up a shape file, or it can output a single zipped archive of all of the files. While shapefiles are pretty clunky (header length limits, for example), shapefiles are nearly universal in the traditional gis community as the lingua franca.</p>
 <p><a href="https://github.com/morganherlocker/geojson2kml">geojson2kml</a> takes a geojson file and outputs a kml file. KML is the default filetype for google earth, making it a great way to share spatial data with people not as familiar with heavy duty gis.</p>
 <p>Both libraries are very simple to use. For example, install geojson2kml like this:</p>
-<pre><code class="lang-bash">npm install geojson2kml
+<pre><code class="language-bash">npm install geojson2kml
 </code></pre>
 <p>Then perform the conversion in node.js:</p>
-<pre><code class="lang-javascript">var geojson2kml = require(&#39;geojson2kml&#39;)
+<pre><code class="language-javascript">var geojson2kml = require(&#39;geojson2kml&#39;)
 
 geojson2kml(&#39;/path/to/polygons.geojson&#39;, &#39;/path/to/polygons.kml&#39;, function(err){
   if(err) throw err

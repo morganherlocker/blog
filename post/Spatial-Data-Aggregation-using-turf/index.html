@@ -16,10 +16,10 @@
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
-      <h1 id="spatial-data-aggregation-using-turf">Spatial Data Aggregation using turf</h1>
+      <h1>Spatial Data Aggregation using turf</h1>
 <p><a href="http://morganherlocker.com/post/turf">turf</a> has seen some recent improvements. Data aggregations have been implemented that allow for convenient aggregation of point values within polygons. Obviously, this is pretty essential for most geographic data analysis. Currently supported operations are sum, average, median, min, max, count, deviation, and variance. </p>
 <p>Each of these have a simple interface that works with a feature collection of polygons, a feature collection of points, an in field, and an out field. Here is an example of summing population values of points within some polygons:</p>
-<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+<pre><code class="language-javascript">var t = require(&#39;turf&#39;)
 
 // Setup some points and polys. These are created using turf&#39;s helper 
 // functions, but any valid geojson feature collections would work.
@@ -44,7 +44,7 @@ t.sum(polyFC, ptFC, &#39;population&#39;, &#39;pop_sum&#39;, function(err, avera
 })
 </code></pre>
 <p>Often times, you may need to aggregate many fields at once. In these cases, you can use the aggregate function and provide an array of aggregations to be performed. This adds significant convenience for common spatial data aggregations:</p>
-<pre><code class="lang-javascript">var t = require(&#39;turf&#39;)
+<pre><code class="language-javascript">var t = require(&#39;turf&#39;)
 
 var poly1 = t.polygon([[[0,0],[10,0],[10,10],[0,10]]])
 var poly2 = t.polygon([[[10,0],[20,10],[20,20], [20,0]]])
