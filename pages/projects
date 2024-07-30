@@ -1,0 +1,16 @@
+<img src='/img/airport.png'></img>
+<h3><a href="https://www.spacex.com/">spacex</a></h3>
+<p>
+My current focus is the design and operation of SpaceX's Starlink satellite mega-constellation. Most of my time is spent building telemetry, simulation, and rendering software.
+</p>
+
+<h3><a href="https://www.mapbox.com/">mapbox</a></h3>
+<p>
+I worked at Mapbox for 5 years building open source cartography and navigation software.
+</p>
+
+<h3><a href="https://turfjs.org/">turf</a></h3>
+<p>
+Turf is a JavaScript library for spatial analysis. I started the project in 2013 looking for an efficient way to manipulate and visualize geographic data. 
+The project has survived on the <a href ="https://github.com/Turfjs/turf/graphs/contributors">contributions from developers around the world</a>.
+</p>

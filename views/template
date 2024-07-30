@@ -12,6 +12,7 @@
   <body>
       <h1><a id="home" href="/">morgan herlocker</a></h1>
       <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">projects</a><span style="padding:5px"></span>
       <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
@@ -22,6 +23,7 @@
     <p>
       <hr>
       <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">projects</a><span style="padding:5px"></span>
       <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
