@@ -47,14 +47,14 @@ code {
   padding: 5px;
   color: white;
   -webkit-transition: -webkit-transform 1s;
-  transition: transform 1s;
+  transition: transform 0.3s;
   transition-property: box-shadow;
 }
 
 #home:hover {
-  box-shadow:-10px 0px #FF0000, -20px 0px #ffa500, -30px 0px #ffff00, -40px 0px #009900,10px 0px #FF0000, 20px 0px #ffa500, 30px 0px #ffff00, 40px 0px #009900;
-  -webkit-transition: -webkit-transform .3s;
-  transition: transform .3s;
+  box-shadow:-10px 0px #072c01, -20px 0px #2e6d48, -30px 0px #6eaebc, -40px 0px #bec3ec,50px 0px;
+  -webkit-transition: -webkit-transform .1s;
+  transition: transform .1s;
   transition-property: box-shadow;
 }
 
