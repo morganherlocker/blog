@@ -75,6 +75,7 @@ select * from globe.parquet order by elev asc limit 1;
 | 35.320187 | 30.997511 | -407 |
 +-----------+-----------+------+
 </code></pre>
+<p>The source code is provided under the <a href="https://github.com/morganherlocker/globe.c/blob/main/LICENSE">MIT license</a>.</p>
 <hr>
 <p><em>2-27-25</em></p>
 ]]></description></item><item><title>Mapping Consensus</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 07 Mar 2019 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Mapping-Consensus</link><guid isPermaLink="true">http://morganherlocker.com/post/Mapping-Consensus</guid><description><![CDATA[<p><img src="/img/consensus.png" alt=""></p>
