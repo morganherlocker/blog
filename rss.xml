@@ -34,7 +34,7 @@ globe render -i ./globe.bin -o ./demo/1/0/1.png --minlon=-180 --minlat=-90 --max
 </code></pre>
 <p><img src="/img/leaflet-globe.png" alt=""></p>
 <h2>Querying</h2>
-<p>globe.c can export data as CSV, making it easy to query and analyze. In this example, the csv data is converted to parquet for further analysis.</p>
+<p>globe.c can export data as CSV, making it easy to query and analyze. In this example, the csv data is converted to parquet for further analysis using <a href="https://duckdb.org/">duckdb</a>.</p>
 <pre><code class="language-sh">globe table -i ./globe.bin -o globe.csv;
 duckdb -c &quot;copy (select * from globe.csv) to &#39;globe.parquet&#39; \
 (FORMAT PARQUET, COMPRESSION ZSTD, ROW_GROUP_SIZE 10_000_000)&quot;
