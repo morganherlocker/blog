@@ -13,7 +13,7 @@ In traditional centralized mapping, deriving consensus is pretty straightforward
 ## Merge
 #### (a + b == c)
 
-Distributed editing of global scale street maps is an unsolved problem, but we can look to similar domains for inspiration. One area where conflict management was similar to the present state of mapping is code authoring. Before `git`, most of us used source control systems that required “checking out” a file before editing, which put a global lock on the file, almost like checking out a book from the library. This provided a simple method for avoiding conflict, in many ways analogous to the last edit rule used in mapping today. The [HOT tasking manager](https://tasks.hotosm.org/) even uses the check out model explicitly where an editor is able to make an exclusive lock on a specific tile while adding data in a dense region. **Conflicts are impossible when there is an unambiguous process for an individual to become the arbiter of truth.** While arguments can still be had over data accuracy, there is a single unambiguous state that cannot be disputed at any given point in time. **Git flipped this model on its head, in large part by taking on an immense responsibility: _detecting and fixing conflicts in competing branches of code._**
+Distributed editing of global scale street maps is an unsolved problem, but we can look to similar domains for inspiration. One area where conflict management was similar to the present state of mapping is code authoring. Before git, most of us used source control systems that required “checking out” a file before editing, which put a global lock on the file, almost like checking out a book from the library. This provided a simple method for avoiding conflict, in many ways analogous to the last edit rule used in mapping today. The [HOT tasking manager](https://tasks.hotosm.org/) even uses the check out model explicitly where an editor is able to make an exclusive lock on a specific tile while adding data in a dense region. **Conflicts are impossible when there is an unambiguous process for an individual to become the arbiter of truth.** While arguments can still be had over data accuracy, there is a single unambiguous state that cannot be disputed at any given point in time. **Git flipped this model on its head, in large part by taking on an immense responsibility: _detecting and fixing conflicts in competing branches of code._**
 
 ### Detection
 #### (a + b = ?)
@@ -23,7 +23,7 @@ Mapping follows a similar pattern to code authoring, in that conflicts are dange
 ### Resolution
 #### (a + b = a | b)
 
-When a conflict is detected in `git`, a best effort attempt will be made to resolve the two branches. If this is not possible, the merge will fail, and the user will be asked to manually decide which branch wins. I have come to believe that these failure modes are inevitable in mapping as well, requiring human intervention. The goal of a resolution strategy should then be to:
+When a conflict is detected in git, a best effort attempt will be made to resolve the two branches. If this is not possible, the merge will fail, and the user will be asked to manually decide which branch wins. I have come to believe that these failure modes are inevitable in mapping as well, requiring human intervention. The goal of a resolution strategy should then be to:
 
 1. flag all conflicts
 2. resolve as many conflicts as possible, perhaps taking calculated risks to do so
@@ -42,7 +42,7 @@ The CRDT strategy or similar is common in certain niches of mapping, such as cro
 
 ## Next?
 
-The conflation problem is an undertaking that no single entity is capable of solving it alone. I recently joined [SharedStreets](http://sharedstreets.io/), an independent non profit building an open street identifier protocol. I joined SharedStreets specifically to focus on the problem of linking branching street map data by common identifier via a fuzzy linear reference system. I believe robust common reference systems are a critical first step to building a distributed global base map (`git` got off easy on this step, since code has line numbers). In addition, I'm increasingly excited by possibilities involving ultra flexible routing engines that are able to adapt to the rapidly accelerating velocity of data generation, either through smart merging/tasking or development in CRDT resolution on the fly.
+The conflation problem is an undertaking that no single entity is capable of solving it alone. I recently joined [SharedStreets](http://sharedstreets.io/), an independent non profit building an open street identifier protocol. I joined SharedStreets specifically to focus on the problem of linking branching street map data by common identifier via a fuzzy linear reference system. I believe robust common reference systems are a critical first step to building a distributed global base map (git got off easy on this step, since code has line numbers). In addition, I'm increasingly excited by possibilities involving ultra flexible routing engines that are able to adapt to the rapidly accelerating velocity of data generation, either through smart merging/tasking or development in CRDT resolution on the fly.
 
 **Thanks for reading! Questions or comments can be emailed to morgan.herlocker@gmail.com or tweeted to [@morganherlocker](https://twitter.com/morganherlocker).**
 

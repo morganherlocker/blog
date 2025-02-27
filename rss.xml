@@ -1,17 +1,96 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>Mapping Consensus</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 07 Mar 2019 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Mapping-Consensus</link><guid isPermaLink="true">http://morganherlocker.com/post/Mapping-Consensus</guid><description><![CDATA[<p><img src="/img/consensus.png" alt=""></p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>globe.c</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 27 Feb 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/globe.c</link><guid isPermaLink="true">http://morganherlocker.com/post/globe.c</guid><description><![CDATA[<p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
+<h2>Size</h2>
+<p>Weighing in at 1.8GB raw, GLOBE has a simple file format. The dataset is divided into 18 spatial partitions, each representing a 30 arc-second grid of lon/lat centroids. The files each contain a block of 16 bit signed integers (int16_t), making it straightforward to load in any language that can read contiguous arrays from disk. For example, in python, you could do something like:</p>
+<pre><code class="language-py">np.fromfile(&#39;./a10g&#39;, dtype=np.int16)
+</code></pre>
+<p>...or in node.js:</p>
+<pre><code class="language-js">new Int16Array(fs.readFileSync(&#39;./a10g&#39;))
+</code></pre>
+<p>This is a common way to pass assets around in game development, but not so common anywhere else these days. Most modern geospatial file types have complex header schemas, hierarchical structures, and nested format types. GLOBE follows an older model, where the &quot;header&quot; is a detailed PDF specification describing the data, and the data is just... the data. Refreshingly simple!</p>
+<h2>Partition structure</h2>
+<p>The file name is used to convey metadata about each file. The first character of the file name represents the spatial partition, followed by a version number. So <em>a11g</em> is the Alaska partition, version 11. NOAA provides the following image to explain this structure:</p>
+<p><img src="/img/globe-grid.png" alt=""></p>
+<h2>globe.c</h2>
+<p>globe.c is a parser and toolset for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. It has zero dependencies and is written in C99. It is capable of flattening the raw grids into a single file, making it easier to load and manipulate in memory. <strong>While the spatial sharding was a necessary convenience in 1999, <em>today we can easily fit the entire dataset into a single file on disk, and even a single array in memory.</em></strong> This makes it possible to load the entire globe in a single line of code in most programming languages without the need for an API of any kind.</p>
+<pre><code class="language-sh">globe merge -o ./globe.bin;
+node -e &quot;console.log(new Int16Array(fs.readFileSync(&#39;./globe.bin&#39;)))&quot;
+    Int16Array(1866240000) [
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254, 12, 254, 12, 254, 12, 254, 12, 254,
+        12, 254, 12, 254,
+    ... 1866239900 more items
+]
+</code></pre>
+<p><a href="https://morganherlocker.github.io/globe.c/">A demo site is available for the project</a>, including a prerendered world map. The provided map is powered by Leaflet, backed by tiles rendered using globe.c, following a standard map tile structure:</p>
+<pre><code>globe render -i ./globe.bin -o ./demo/1/0/0.png --minlon=-180 --minlat=0 --maxlon=0 --maxlat=90;
+globe render -i ./globe.bin -o ./demo/1/0/1.png --minlon=-180 --minlat=-90 --maxlon=0 --maxlat=0;
+[...]
+</code></pre>
+<p><img src="/img/leaflet-globe.png" alt=""></p>
+<h2>Querying</h2>
+<p>globe.c can export data as CSV, making it easy to query and analyze. In this example, the csv data is converted to parquet for further analysis.</p>
+<pre><code class="language-sh">globe table -i ./globe.bin -o globe.csv;
+duckdb -c &quot;copy (select * from globe.csv) to &#39;globe.parquet&#39; \
+(FORMAT PARQUET, COMPRESSION ZSTD, ROW_GROUP_SIZE 10_000_000)&quot;
+</code></pre>
+<p>Summary statistics:</p>
+<pre><code class="language-sql">select 
+    min(elev), 
+    quantile_disc(elev, 0.25) as p25, 
+    median(elev), 
+    avg(elev), 
+    quantile_disc(elev, 0.75) 
+    as p75, max(elev) 
+from &#39;./globe.parquet&#39;;
+
+# Summary
++-----------+-----+--------------+-------------------+------+-----------+
+| min(elev) | p25 | median(elev) |     avg(elev)     | p75  | max(elev) |
++-----------+-----+--------------+-------------------+------+-----------+
+| -407      | 219 | 609.0        | 1138.489993141472 | 1950 | 8752      |
++-----------+-----+--------------+-------------------+------+-----------+
+</code></pre>
+<p>Locating the high and low point:</p>
+<pre><code class="language-sql">select * from globe.parquet order by elev desc limit 1;
+
+# Himalayas
++-----------+----------+------+
+|    lon    |   lat    | elev |
++-----------+----------+------+
+| 86.874268 | 28.00589 | 8752 |
++-----------+----------+------+
+
+select * from globe.parquet order by elev asc limit 1;
+
+# Dead Sea
++-----------+-----------+------+
+|    lon    |    lat    | elev |
++-----------+-----------+------+
+| 35.320187 | 30.997511 | -407 |
++-----------+-----------+------+
+</code></pre>
+<hr>
+<p><em>2-27-25</em></p>
+]]></description></item><item><title>Mapping Consensus</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 07 Mar 2019 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Mapping-Consensus</link><guid isPermaLink="true">http://morganherlocker.com/post/Mapping-Consensus</guid><description><![CDATA[<p><img src="/img/consensus.png" alt=""></p>
 <p>I have long been enamored with the idea of <a href="https://twitter.com/morganherlocker/status/1063148961656070144">joining and reconciling distributed datasets</a>. With the rise of machine learning in the mapping space, coupled with an ever increasing trend towards crowd sourced mapping (individuals, NGOs, and governments), finding the thread that ties these datasets together is more important than ever. There is more open data in the mapping space than anyone knows what to do with and it is being generated faster than centralized projects like OpenStreetMap are able to ingest it. For example, nearly a year ago, <a href="https://github.com/Microsoft/USBuildingFootprints">Bing released an ML derived dataset of 125 million building footprints under an ODBL license</a>, which is compatible with OpenStreetMap (UPDATE: another <a href="https://github.com/Microsoft/CanadianBuildingFootprints">12 million Canadian footprints</a> were released <a href="https://twitter.com/jharpster/status/1103739755278168065">moments after I publish this piece</a>). The data has yet to be imported due to a host of problems that arise when attempting to process so many changes at once. While maintenance burden is an oft-cited pain point, an even bigger problem is how to detect and resolve conflicts in the data. In other words, <strong><em>how do we come to consensus on our view of the world in the age of global scale sensor networks and competing entities exerting soft power through the map? Is it even possible?</em></strong></p>
 <h2>Last Edit Rule</h2>
 <h4>(a + b == b)</h4>
 <p>In traditional centralized mapping, deriving consensus is pretty straightforward. Whoever made the last change wins, and aside from the occasional edit war, this model is powerful in its lack of ambiguity. As a community, each contributor submits to the “last edit monarchy”, because there is so much to gain by having access to an internally consistent global street map of curated data. This model starts to break down, however, when the concepts of “time” and “edit” become fuzzy. The last edit rule only works when we operate on individual human level scales for time and edit complexity, since the curation and reconciliation models require human review. When the supply side dam breaks and 100s of millions of detailed edits can be generated in a few minutes by a swarm of GPUs, the human reviewer model cannot scale to meet the volume. Whether it&#39;s buildings extracted with machine learning from aerial imagery at a rate of millions per minute, or massive street datasets generated by cars and phones collecting ambient GPS telemetry as users go about their day, the volume of useful data is exploding exponentially. How useful is the concept of “last edit” when the last edit included 10 million miles of street centerlines, and no one is quite sure how they overlap with the existing 50 million miles in OpenStreetMap meticulously mapped out over the last decade? <strong>What happens when that volume is regenerated daily?</strong></p>
 <h2>Merge</h2>
 <h4>(a + b == c)</h4>
-<p>Distributed editing of global scale street maps is an unsolved problem, but we can look to similar domains for inspiration. One area where conflict management was similar to the present state of mapping is code authoring. Before <code>git</code>, most of us used source control systems that required “checking out” a file before editing, which put a global lock on the file, almost like checking out a book from the library. This provided a simple method for avoiding conflict, in many ways analogous to the last edit rule used in mapping today. The <a href="https://tasks.hotosm.org/">HOT tasking manager</a> even uses the check out model explicitly where an editor is able to make an exclusive lock on a specific tile while adding data in a dense region. <strong>Conflicts are impossible when there is an unambiguous process for an individual to become the arbiter of truth.</strong> While arguments can still be had over data accuracy, there is a single unambiguous state that cannot be disputed at any given point in time. <strong>Git flipped this model on its head, in large part by taking on an immense responsibility: <em>detecting and fixing conflicts in competing branches of code.</em></strong></p>
+<p>Distributed editing of global scale street maps is an unsolved problem, but we can look to similar domains for inspiration. One area where conflict management was similar to the present state of mapping is code authoring. Before git, most of us used source control systems that required “checking out” a file before editing, which put a global lock on the file, almost like checking out a book from the library. This provided a simple method for avoiding conflict, in many ways analogous to the last edit rule used in mapping today. The <a href="https://tasks.hotosm.org/">HOT tasking manager</a> even uses the check out model explicitly where an editor is able to make an exclusive lock on a specific tile while adding data in a dense region. <strong>Conflicts are impossible when there is an unambiguous process for an individual to become the arbiter of truth.</strong> While arguments can still be had over data accuracy, there is a single unambiguous state that cannot be disputed at any given point in time. <strong>Git flipped this model on its head, in large part by taking on an immense responsibility: <em>detecting and fixing conflicts in competing branches of code.</em></strong></p>
 <h3>Detection</h3>
 <h4>(a + b = ?)</h4>
 <p>Mapping follows a similar pattern to code authoring, in that conflicts are dangerous, but not the norm. It is rare to have multiple coders working on the same lines in a file at the same time, just as it is rare to have multiple editors working on the same object in OpenStreetMap, in comparison to the average. A system that could at least detect issues, could forward most changes through, and this is precisely what makes <code>git merge</code> so powerful. This strategy is commonly used in bespoke OpenStreetMap imports, where code will be written to identify imported features that are far away from existing features, and therefore pose minimal conflict risk.</p>
 <h3>Resolution</h3>
 <h4>(a + b = a | b)</h4>
-<p>When a conflict is detected in <code>git</code>, a best effort attempt will be made to resolve the two branches. If this is not possible, the merge will fail, and the user will be asked to manually decide which branch wins. I have come to believe that these failure modes are inevitable in mapping as well, requiring human intervention. The goal of a resolution strategy should then be to:</p>
+<p>When a conflict is detected in git, a best effort attempt will be made to resolve the two branches. If this is not possible, the merge will fail, and the user will be asked to manually decide which branch wins. I have come to believe that these failure modes are inevitable in mapping as well, requiring human intervention. The goal of a resolution strategy should then be to:</p>
 <ol>
 <li>flag all conflicts</li>
 <li>resolve as many conflicts as possible, perhaps taking calculated risks to do so</li>
@@ -24,7 +103,7 @@
 <p><a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">Conflict-free replicated data types</a> (CRDT) are one potential solution to this set of issues, as suggested by the <a href="https://bits.coop/">brilliant</a> <a href="https://www.digital-democracy.org/">folks</a> working on <a href="https://peermaps.org/">peermaps</a>, a fully p2p global street map used in some <a href="https://www.digital-democracy.org/ourwork/ra/">impactful offline heavy editing scenarios in the Amazon basin</a>. The idea with the CRDT approach more broadly is to link edits together which could potentially conflict, and materialize a de-conflicted view of each feature on the fly. This materialization step would be separate from the primary data storage responsibilities of the map editing infrastructure, opening up the possibility for various resolution strategies depending on the use case. For example, an organization could weight its own editors&#39; edits more heavily or a cautious individual wary of ML derived edits could filter based on source. Default strategies would likely be provided as well, similar to the golden path git merge strategy.</p>
 <p>The CRDT strategy or similar is common in certain niches of mapping, such as crowd sourced POIs or ETA modeling where conflicting data is the norm, but significant research is still needed to make this a reality for features with strict topology requirements such as street geometry or tightly packed buildings. While some may think of p2p mapping as a niche use case, decentralized mapping generally is bringing the issues potentially addressed by CRDT to the forefront for anyone interested in large scale mapping collaborations.</p>
 <h2>Next?</h2>
-<p>The conflation problem is an undertaking that no single entity is capable of solving it alone. I recently joined <a href="http://sharedstreets.io/">SharedStreets</a>, an independent non profit building an open street identifier protocol. I joined SharedStreets specifically to focus on the problem of linking branching street map data by common identifier via a fuzzy linear reference system. I believe robust common reference systems are a critical first step to building a distributed global base map (<code>git</code> got off easy on this step, since code has line numbers). In addition, I&#39;m increasingly excited by possibilities involving ultra flexible routing engines that are able to adapt to the rapidly accelerating velocity of data generation, either through smart merging/tasking or development in CRDT resolution on the fly.</p>
+<p>The conflation problem is an undertaking that no single entity is capable of solving it alone. I recently joined <a href="http://sharedstreets.io/">SharedStreets</a>, an independent non profit building an open street identifier protocol. I joined SharedStreets specifically to focus on the problem of linking branching street map data by common identifier via a fuzzy linear reference system. I believe robust common reference systems are a critical first step to building a distributed global base map (git got off easy on this step, since code has line numbers). In addition, I&#39;m increasingly excited by possibilities involving ultra flexible routing engines that are able to adapt to the rapidly accelerating velocity of data generation, either through smart merging/tasking or development in CRDT resolution on the fly.</p>
 <p><strong>Thanks for reading! Questions or comments can be emailed to <a href="mailto:morgan.herlocker@gmail.com">morgan.herlocker@gmail.com</a> or tweeted to <a href="https://twitter.com/morganherlocker">@morganherlocker</a>.</strong></p>
 <hr>
 <p><em>03-07-19</em></p>
@@ -98,45 +177,4 @@ tiles.forEach(function(tile){
 <p>geotype currently displays characters with 4 styles. Each character is either styled as a point, a line, a polygon, or null data. It would be cool to also allow for additional styling using something like <a href="https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0">simplestyle-spec</a>, which is supported by tools like <a href="http://geojson.io/">geojson.io</a>, <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a>, and the <a href="https://help.github.com/articles/mapping-geojson-files-on-github/#styling-features">Github map display</a>.</p>
 <hr>
 <p><em>3-26-15</em></p>
-]]></description></item><item><title>geotype</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Fri, 20 Mar 2015 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/geotype</link><guid isPermaLink="true">http://morganherlocker.com/post/geotype</guid><description><![CDATA[<p><a href="https://github.com/morganherlocker/geotype">Geotype</a> is a cli tool for rendering GeoJSON from the command line. While this might seem fairly ridiculous/pointless, it can actually be quite useful for quickly seeing what sort of geography is lurking inside a GeoJSON file. While tools like <a href="http://geojson.io/">geojson.io</a> and <a href="https://github.com/mapbox/geojsonio-cli">geojson-cli</a> provide a quick way to do this in the browser, a faster feedback loop is often helpful.</p>
-<p>Here&#39;s what it looks like in action. Given a GeoJSON file that contains something like this:</p>
-<p><img src="/img/world-geojson.png" alt=""></p>
-<p>...we can use geotype to render it like this:</p>
-<pre><code class="language-sh">geotype world.geojson
-</code></pre>
-<p><img src="/img/geotype1.gif" alt=""></p>
-<p>Let&#39;s say we want something higher resolution, we can overzoom using the <code>--mod</code> flag.</p>
-<pre><code class="language-sh">geotype world.geojson -m 4
-</code></pre>
-<p><img src="/img/geotype2.gif" alt=""></p>
-<p>Don&#39;t want color? Use the <code>--no-color</code> flag to render to plain old acii.</p>
-<pre><code class="language-sh">geotype world.geojson -m 4 --no-color
-</code></pre>
-<p><img src="/img/geotype3.gif" alt=""></p>
-<p>geotype can also distinguish between points, lines, and polygons. Here&#39;s how it renders a GeoJSON FeatureCollection containing all Vermont libraries (points), highways (lines), and zipcodes (polygons) with and without color.</p>
-<pre><code class="language-sh">geotype vermont.geojson
-</code></pre>
-<p><img src="/img/geotype4.gif" alt=""></p>
-<p>The <code>--zoom -z</code> flag allows a pixel zoom to be specified. Each pixel is equivalent to one tile at the given zoom. Let&#39;s zoom in on our Vermont file with a simple bash for loop.</p>
-<pre><code class="language-sh">for i in `seq 6 12`; do geotype vermont.geojson -z $i; done
-</code></pre>
-<p><img src="/img/geotype5.gif" alt=""></p>
-<p>Use the <code>--bbox</code> flag to fit the ascii &quot;image&quot; to a specific bounding box, or use the <code>--tile</code> flag to fit the render to an x/y/z map tile. Let&#39;s cycle vertically across a column of tiles against our world.geojson file to try it out.</p>
-<pre><code class="language-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 9; done
-</code></pre>
-<p><img src="/img/geotype6.gif" alt=""></p>
-<p>...at a higher zoom</p>
-<pre><code class="language-sh">for i in `seq 0 11`; do geotype world.geojson -t 4/$i/4 -z 11; done
-</code></pre>
-<p><img src="/img/geotype7.gif" alt=""></p>
-<p>##how it works</p>
-<p>Geotype is 100% JavaScript, and can be used in the browser via tools like browserify. Under the hood, it uses <a href="https://github.com/mapbox/tile-cover">tile-cover</a> and <a href="https://github.com/mapbox/tilebelt/">tilebelt</a> for rasterization, along with some clever code for picking default bboxes and pixel sizes. </p>
-<p>While tile-cover and tilebelt were initially built for <a href="https://github.com/mapbox/carmen">super fast indexing in node</a>, their use of scanline algorithms originally designed for graphics processing and video games make them ideal candidates for a pure JavaScript map renderer. In fact, tile-cover is significantly faster than the best of breed distributed geospatial C++ indexers currently available, and it is designed with multi-core high cpu node.js processing in mind.</p>
-<p>Using <a href="">canvas</a> and <a href="http://leafletjs.com/reference.html#tilelayer-canvas">Leaflet&#39;s canvas layer</a> it would even be possible to build a pure JavaScript clientside map renderer, for instances where GL clientside rendering is not possible. In fact, using geotype, web map rendering may even be possible in pure text browsers, such as <a href="http://en.wikipedia.org/wiki/Lynx_%28web_browser%29">Lynx</a>.</p>
-<p>##caveats</p>
-<p>Keep in mind, this is a mad science hack. Aside from using geotype as a test diff renderer or a repl tool, I would not recommend geotype for &quot;real&quot; map rendering. WebGL has the ability to highly parallelize work across the GPU, so geotype is never going to compete with rendering times close to those of Mapnik or WebGL.</p>
-<p><em>Now that that&#39;s out of the way, let&#39;s render a bunch of shit in ascii.</em></p>
-<p><img src="/img/geotype8.gif" alt=""></p>
-<hr>
-<p><em>3-20-15</em></p>
 ]]></description></item></channel></rss>

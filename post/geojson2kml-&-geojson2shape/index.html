@@ -3,20 +3,16 @@
   <head>
     <title>morgan herlocker</title>
     <link rel="stylesheet" href="/site.css">
-    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/default.min.css">
-    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
-    <script>
-      hljs.initHighlightingOnLoad();
-    </script>
   </head>
   <body>
       <h1><a id="home" href="/">morgan herlocker</a></h1>
       <a href="/about">about</a><span style="padding:5px"></span>
-      <a href="/projects">projects</a><span style="padding:5px"></span>
-      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
+      <div id="content">
       <h1>geojson2kml &amp; geojson2shape</h1>
 <p>I released a couple new modules a few days ago and wanted to mention them. The purpose of both of these modules is to convert geojson files out to other formats. Although <a href="/turf">turf</a> has been my go to &quot;utility belt&quot; module for adding gis functionality, I want to keep in line with the *nix philosophy of small modules. With that in mind, interoperability is not the focus of turf, so these sorts of functions will be offloaded to modules like geojson2kml and geojson2shape.</p>
 <p><a href="https://github.com/morganherlocker/geojson2shape">geojson2shape</a> takes a geojson file and outputs a collection of files that make up a shape file, or it can output a single zipped archive of all of the files. While shapefiles are pretty clunky (header length limits, for example), shapefiles are nearly universal in the traditional gis community as the lingua franca.</p>
@@ -34,13 +30,14 @@ geojson2kml(&#39;/path/to/polygons.geojson&#39;, &#39;/path/to/polygons.kml&#39;
 <hr>
 <p><em>11-26-13</em></p>
 
+      </div>
   </body>
   <footer>
     <p>
       <hr>
       <a href="/about">about</a><span style="padding:5px"></span>
-      <a href="/projects">projects</a><span style="padding:5px"></span>
-      <a href="https://twitter.com/morganherlocker">twitter</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
       <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
