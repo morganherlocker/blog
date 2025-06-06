@@ -89,3 +89,7 @@ a:hover {
   text-decoration:none;
 }
 
+code {
+  background-color: #565e9244;
+  padding: 1px;
+}

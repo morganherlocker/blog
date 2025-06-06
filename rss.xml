@@ -1,4 +1,77 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>globe.c</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 27 Feb 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/globe.c</link><guid isPermaLink="true">http://morganherlocker.com/post/globe.c</guid><description><![CDATA[<p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>Worm Helsing</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Sat, 31 May 2025 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Worm-Helsing</link><guid isPermaLink="true">http://morganherlocker.com/post/Worm-Helsing</guid><description><![CDATA[<p>Today my friend, <a href="http://xoxodan.com/">Dan Hanf</a>, and I released a game for the <a href="https://itch.io/jam/4mb-jam-2025">4MB game jam</a>. It was the first game jam for both of us, and the first game either of us had released.</p>
+<h2>The 4mb game jam</h2>
+<p>The <a href="https://itch.io/jam/4mb-jam-2025">4MB game jam</a> is a game jam that takes place every other year. The rules of the jam state that every submission must be a standalone desktop application and it must be below 4MB. This year, the theme was <em>&#39;Worms, Holes and Wormholes&#39;</em>, so we naturally decided to make a game about worms, and holes, and... you get the idea.</p>
+<p>In the age of 100GB+ games, multi-dozen-MB web pages****, and <a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/">7+ minute loading times</a>, the idea of trying to make something fun with a much smaller footprint was compelling. The submissions included a full 3D FPS in just 21KiB, as well as a puzzle game written in hand coded NASM assembly (2.4KiB).</p>
+<h2>Our game</h2>
+<p><a href="https://morganherlocker.itch.io/worm-helsing">Itch.io / Worm Helsing</a></p>
+<p>Worm Helsing is an isometric hack-n-slash where you explore a procedurally generated warren of vampiric worms as an intrepid explorer. We wrote the game in C using the <a href="https://www.raylib.com/">raylib</a> library. All audio was made by Dan in <a href="https://www.reaper.fm/">Reaper</a>, using a combination of synths and mic&#39;d sounds. I made the sprites and animations in <a href="https://www.aseprite.org/">Aseprite</a>, a simple pixel editing tool, with procedural effects sprinkled in to cut size.</p>
+<p>In the end, we submitted a game that was 1,043 KiB, uncompressed, with no additional dependencies.</p>
+<img src='/img/wormhelsing.gif' style='width:360px'>
+
+<h2>Relative size breakdown</h2>
+<p>Below is a <a href="https://windirstat.net/download.html">windirstat</a> view of the game&#39;s files. The executable was built for Linux Mint, and compressed with UPX. UPX has a long history in the world of demoscene, and works by compressing your program with a thin deflate wrapper that is unpacked at runtime. It has some downsides, in particular we found that Windows antivirus tries hard to prevent the user from executing a program like this, but in the case of a gamejam or demoscene submission, this is forgivable.</p>
+<p><img src="/img/wormhelsing-linuxmint-windirstat.png" alt=""></p>
+<p>As you can see, our exe was the largest component, followed by music. Some of the smaller submissions were able to exploit system resources, like SDL2, which comes preinstalled on Linux Mint, or Win32 for Windows. While I was very pleased with the size of our raylib binary, if we wanted to hit the sub-100KiB tiers, we would reconsider it for a library that could use one of these preinstalled dependencies. Some of the submissions got quite creative with their use of system dependencies, such as using a lib that uses the system web view, or a submission that relied on the system image viewer opened in a 2nd window.</p>
+<h2>Takeaways</h2>
+<ul>
+<li>Creating a game from scratch is really fun! If you&#39;ve ever thought about it, I would recommend having a shot at a simple game you are confident you can ship.</li>
+<li>UPX is helpful for cutting size by 25-60%, but it comes with security tradeoffs that make for a questionable tradeoff for serious apps.</li>
+<li>Foundational dependencies you didn&#39;t write can far outweigh everything else you do write, for a timeboxed endeavor like this. We went in knowing the raylib dependency alone would be larger than some of the other submissions, and for us, it was worth it given our relative lack of experience shipping a full game.</li>
+<li>Raylib was a joy to use, and I never got stuck on any API rough edge at any point. I very rarely even needed google, since reading the headers was enough - I wrote a good chunk of the game while offline in nature.</li>
+</ul>
+<hr>
+<p><em>5-31-25</em></p>
+]]></description></item><item><title>Raw bin</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Fri, 28 Mar 2025 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Raw-bin</link><guid isPermaLink="true">http://morganherlocker.com/post/Raw-bin</guid><description><![CDATA[<h2>The Problem with protobuf</h2>
+<p>I&#39;ll let Google describe the protobuf format:</p>
+<blockquote>
+<p>Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.</p>
+</blockquote>
+<p>This is a compelling elevator pitch. Because protobuf stores schema data out of band from the data itself (unlike self-describing formats like JSON), data stored or sent over the wire does not include bloat from headers/field names/etc.</p>
+<p>The downsides come in a few well-documented forms (not streamable, etc.), but I think the biggest issues are overlooked and unaddressed by alternatives:</p>
+<ol>
+<li>The generated code is large, and includes hundreds of thousands of lines from stdlib + many google libraries. This hurts compile times in a monorepo.</li>
+<li>The format encourages array-of-structs style protocols to emerge.</li>
+<li>It is non-trivial to write an alternative parser or serializer, due to unnecessary and complex features such as runtime reflection, nested data, etc.</li>
+</ol>
+<h3>Code size</h3>
+<p>Let&#39;s take a common example of a data schema:</p>
+<pre><code class="language-proto">syntax = &quot;proto3&quot;;
+message LonLat {
+  float lon = 1;
+  float lat = 2;
+}
+</code></pre>
+<p>This proto generates <strong>584 lines of C++, links to 173k lines of dependencies, and generates a 21Kb object file</strong> when compiled with <code>clang++@14.0.0-1ubuntu1.1</code>.</p>
+<p>While the serialized data itself is only several bytes, the bindings to the generated parser outweigh the size of the payload, and are 2,625 times larger than the data we&#39;re trying to transmit for a single coordinate. At scale, the size of our data should far outweigh the size of the parser, but this adds up quickly when it comes to compile times and image sizes.</p>
+<p>Do we need nearly 200k lines of code to parse two floats?</p>
+<h2>Raw binary data</h2>
+<p>Perhaps we don&#39;t need a parser at all. What if instead, we defined a lonlat protocol in a readme file that said something like this?</p>
+<blockquote>
+<p><em>LonLat file spec:</em></p>
+<ul>
+<li><em>Each file represents a list of strided lon, lat points.</em></li>
+<li><em>All even values are lon, all odd values are lat.</em></li>
+<li><em>The data type is 4 byte float.</em></li>
+</ul>
+</blockquote>
+<p>A parser can now be written trivially, if we even want to call it a parser. It&#39;s just data.</p>
+<pre><code class="language-js">const coords = new Float32Array(fs.readFileSync(&#39;./lonlat.bin&#39;));
+for (let idx = 0; idx &lt; coords.length; idx++) {
+    const lon = coords[0];
+    const lat = coords[1];
+    console.log(`coordinate: ${lon}, ${lat}`);
+}
+</code></pre>
+<h3>Benefits</h3>
+<p>We can confidently say that this &quot;parser&quot; can handle 1M+ coordinates at real-time visualization speeds in a browser, and 100M+ at ~1hz. There is no more efficient parser that could be written for simple coordinates in a browser without domain-specific compression tricks. Alternatives, including many uses of protobuf in clients, instead allocate memory into objects per item, which is considerably slower.</p>
+<p>What&#39;s more, since the memory model is so simple with struct-of-arrays, we can easily estimate how much memory our programs will use with napkin math about the domain limits.</p>
+<h3>Cross language &quot;support&quot;</h3>
+<p>Outside a browser, our data format is also trivial to parse in any other language, because nearly every language has primitive support for parsing binary arrays of data quickly. For example, here&#39;s python:</p>
+<pre><code class="language-python">coords = numpy.fromfile(&#39;./lonlat.bin&#39;)
+</code></pre>
+<hr>
+<p><em>3-28-25</em></p>
+]]></description></item><item><title>globe.c</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 27 Feb 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/globe.c</link><guid isPermaLink="true">http://morganherlocker.com/post/globe.c</guid><description><![CDATA[<p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
 <h2>Size</h2>
 <p>Weighing in at 1.8GB raw, GLOBE has a simple file format. The dataset is divided into 18 spatial partitions, each representing a 30 arc-second grid of lon/lat centroids. The files each contain a block of 16 bit signed integers (int16_t), making it straightforward to load in any language that can read contiguous arrays from disk. For example, in python, you could do something like:</p>
 <pre><code class="language-py">np.fromfile(&#39;./a10g&#39;, dtype=np.int16)
@@ -133,49 +206,4 @@ select * from globe.parquet order by elev asc limit 1;
 <p>If you want to report a bug, request a feature, or add a new venue let me know <a href="https://github.com/morganherlocker/oakland-tonight/issues">on Github</a> or on twitter <a href="https://twitter.com/morganherlocker">@morganherlocker</a>.</p>
 <hr>
 <p><em>2-4-16</em></p>
-]]></description></item><item><title>Ship Logs</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Wed, 16 Sep 2015 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Ship-Logs</link><guid isPermaLink="true">http://morganherlocker.com/post/Ship-Logs</guid><description><![CDATA[<p>This is a map of locations extracted from digitized ship logs from 1750 to 1850. The database was compiled by a number of researchers and <a href="https://pendientedemigracion.ucm.es/info/cliwoc/">was made available</a> as a resource for studying historical climate change.</p>
-<iframe width='100%' height='500px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/morganherlocker.nf8hfgb2/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoibW9yZ2FuaGVybG9ja2VyIiwiYSI6Ii1zLU4xOWMifQ.FubD68OEerk74AYCLduMZQ#2/7.4/3.2'></iframe>
-
-<p><em><a href="https://a.tiles.mapbox.com/v4/morganherlocker.nf8hfgb2/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoibW9yZ2FuaGVybG9ja2VyIiwiYSI6Ii1zLU4xOWMifQ.FubD68OEerk74AYCLduMZQ#2/7.4/3.2">Full Screen</a></em></p>
-<p>It is a fairly unique dataset in both breadth and depth -- it covers 100 years of pre-industrial data, and contains often amusing notes recorded by sailors. The data also contains numerous fields for various meterological measurments, and <a href="https://www.kaggle.com/domcastro/climate-data-from-ocean-ships/wars-and-fights-draft/discussion">one researcher was able to extract all mentions of naval battles</a>, including a tussle with &quot;a sea-monster of indeterminable size&quot;.</p>
-<p>I have not done anything especially useful with the database yet, but I wanted to share this map of the full dataset and encourage anyone interested in climate science or maritime history to give it a look. This map was made using <a href="https://github.com/mapbox/tippecanoe">tippecanoe</a> and <a href="https://www.mapbox.com/mapbox-studio/#darwin">Mapbox Studio</a>.</p>
-<hr>
-<p><em>9-16-15</em></p>
-]]></description></item><item><title>geotype continued</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 26 Mar 2015 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/geotype-continued</link><guid isPermaLink="true">http://morganherlocker.com/post/geotype-continued</guid><description><![CDATA[<p><a href="https://github.com/morganherlocker/geotype">geotype</a> now supports pipes and png image output. You can now think of geotype as an absurd <a href="http://mapnik.org/">mapnik</a> parody from an alternate dimension.</p>
-<p>Because geotype pipes png data, we can send the result straight to the imgur api and get a link back. Since we are not printing out characters to the terminal, we can set the resolution much higher (displaying characters in the terminal is a lot slower than displaying pixels in an image renderer).</p>
-<p><img src="/img/imgur-pipe.gif" alt=""></p>
-<p>In <a href="https://gist.github.com/morganherlocker/b14e17752227b0647e8c">just 25 lines of Javascript</a>, we can even create a caching map server that integrates with Leaflet and generates tiles on the fly. Here&#39;s the DC bus system viewed in Leaflet:</p>
-<p><img src="/img/geotype-server.gif" alt=""></p>
-<p>Depending on how you configure geotype, tiles will dynamically render in ~.5-1 second each. This is pretty slow, but a simple script using tile-cover can be used to pre-cache all the tiles you need, so moving around the map will be lightning fast. A script to do this would look something like this:</p>
-<pre><code class="language-js">var exec = require(&#39;child_process&#39;).execSync
-var cover = require(&#39;tile-cover&#39;).tiles
-var dc = require(&#39;dc.json&#39;)
-
-var zoom = 16
-var tiles = cover(dc, {min_zoom: zoom, max_zoom: zoom})
-tiles.forEach(function(tile){
-  var img = exec(&#39;geotype ./dc.json -p -f 0 -m 2 -t &#39;+
-    tile[0]+&#39;/&#39;+tile[1]+&#39;/&#39;+zoom)
-  fs.writeFileSync(__dirname+&#39;/tiles/&#39;+
-    tile[0]+&#39;-&#39;+tile[1]+&#39;-&#39;+tile[2]+&#39;.png&#39;,img)
-})
-</code></pre>
-<p>Pipe these images to a static server like s3 and you have yourself a very minimal map tile server (and I mean minimal!).</p>
-<h2>question round up</h2>
-<h4>ok, so really.. why?</h4>
-<p>I built geotype 1 part as a fun hack and 1 part looking for a quick way to visualize test results. While working on <a href="http://turfjs.org">Turf</a> and various other geographic algorithm libraries, I find myself opening up GeoJSON data in QGIS or geojson.io hundreds of times a day. I wanted a way to speed up this feedback loop.</p>
-<h4>geotype for testing?</h4>
-<p>I see this working in two ways:</p>
-<ol>
-<li><p>geotype as a quick repl renderer. You have a script and you want to see the results quickly on the fly.</p>
-</li>
-<li><p>A fuzzy diff tester. Geographic algorithms are notoriously difficult to test in a way that is not absurdly brittle. Using something like geotype, you might be able to save states of algorithmic output that can be compared against in the future. Facebook has experimented with comparing images for UI testing using <a href="https://github.com/facebookarchive/huxley">Huxley</a>; I think it could be reasonable to test changes in geography algorithms using a similar methodology. Tolerance control in testing is important, because having all your tests fail with unimportant changes leads to a &quot;boy who cried wolf&quot; view of tests. The opposite, &quot;everything broke and it threw an error&quot; is not sufficient for maintaining low level geographic systems.</p>
-</li>
-</ol>
-<h4>what is tile-cover?</h4>
-<p><a href="https://github.com/mapbox/tile-cover">tile-cover</a> is the geospatial indexer that powers the Mapbox geocoder, <a href="https://github.com/mapbox/carmen">Carmen</a> (carmen does a lot more than spatial indexing, but this is one key step). It is a pure JavaScript spatial indexer that can tell you which <a href="https://msdn.microsoft.com/en-us/library/bb259689.aspx">map tiles</a> cover a geometry at a given zoom level range. This is important for looking up shapes fast in a database, and tile-cover is particularly suited for doing this across distributed systems. It steals a bunch of ideas from <a href="http://en.wikipedia.org/wiki/Scanline_rendering">video games and old CRT displays</a> so that it can be as fast or faster than comprable libraries written in C++.</p>
-<h4>what&#39;s next?</h4>
-<p>geotype currently displays characters with 4 styles. Each character is either styled as a point, a line, a polygon, or null data. It would be cool to also allow for additional styling using something like <a href="https://github.com/mapbox/simplestyle-spec/tree/master/1.1.0">simplestyle-spec</a>, which is supported by tools like <a href="http://geojson.io/">geojson.io</a>, <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a>, and the <a href="https://help.github.com/articles/mapping-geojson-files-on-github/#styling-features">Github map display</a>.</p>
-<hr>
-<p><em>3-26-15</em></p>
 ]]></description></item></channel></rss>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
+      <div id="content">
+      <h1>Raw bin</h1>
+<h2>The Problem with protobuf</h2>
+<p>I&#39;ll let Google describe the protobuf format:</p>
+<blockquote>
+<p>Protocol buffers are Google’s language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. You define how you want your data to be structured once, then you can use special generated source code to easily write and read your structured data to and from a variety of data streams and using a variety of languages.</p>
+</blockquote>
+<p>This is a compelling elevator pitch. Because protobuf stores schema data out of band from the data itself (unlike self-describing formats like JSON), data stored or sent over the wire does not include bloat from headers/field names/etc.</p>
+<p>The downsides come in a few well-documented forms (not streamable, etc.), but I think the biggest issues are overlooked and unaddressed by alternatives:</p>
+<ol>
+<li>The generated code is large, and includes hundreds of thousands of lines from stdlib + many google libraries. This hurts compile times in a monorepo.</li>
+<li>The format encourages array-of-structs style protocols to emerge.</li>
+<li>It is non-trivial to write an alternative parser or serializer, due to unnecessary and complex features such as runtime reflection, nested data, etc.</li>
+</ol>
+<h3>Code size</h3>
+<p>Let&#39;s take a common example of a data schema:</p>
+<pre><code class="language-proto">syntax = &quot;proto3&quot;;
+message LonLat {
+  float lon = 1;
+  float lat = 2;
+}
+</code></pre>
+<p>This proto generates <strong>584 lines of C++, links to 173k lines of dependencies, and generates a 21Kb object file</strong> when compiled with <code>clang++@14.0.0-1ubuntu1.1</code>.</p>
+<p>While the serialized data itself is only several bytes, the bindings to the generated parser outweigh the size of the payload, and are 2,625 times larger than the data we&#39;re trying to transmit for a single coordinate. At scale, the size of our data should far outweigh the size of the parser, but this adds up quickly when it comes to compile times and image sizes.</p>
+<p>Do we need nearly 200k lines of code to parse two floats?</p>
+<h2>Raw binary data</h2>
+<p>Perhaps we don&#39;t need a parser at all. What if instead, we defined a lonlat protocol in a readme file that said something like this?</p>
+<blockquote>
+<p><em>LonLat file spec:</em></p>
+<ul>
+<li><em>Each file represents a list of strided lon, lat points.</em></li>
+<li><em>All even values are lon, all odd values are lat.</em></li>
+<li><em>The data type is 4 byte float.</em></li>
+</ul>
+</blockquote>
+<p>A parser can now be written trivially, if we even want to call it a parser. It&#39;s just data.</p>
+<pre><code class="language-js">const coords = new Float32Array(fs.readFileSync(&#39;./lonlat.bin&#39;));
+for (let idx = 0; idx &lt; coords.length; idx++) {
+    const lon = coords[0];
+    const lat = coords[1];
+    console.log(`coordinate: ${lon}, ${lat}`);
+}
+</code></pre>
+<h3>Benefits</h3>
+<p>We can confidently say that this &quot;parser&quot; can handle 1M+ coordinates at real-time visualization speeds in a browser, and 100M+ at ~1hz. There is no more efficient parser that could be written for simple coordinates in a browser without domain-specific compression tricks. Alternatives, including many uses of protobuf in clients, instead allocate memory into objects per item, which is considerably slower.</p>
+<p>What&#39;s more, since the memory model is so simple with struct-of-arrays, we can easily estimate how much memory our programs will use with napkin math about the domain limits.</p>
+<h3>Cross language &quot;support&quot;</h3>
+<p>Outside a browser, our data format is also trivial to parse in any other language, because nearly every language has primitive support for parsing binary arrays of data quickly. For example, here&#39;s python:</p>
+<pre><code class="language-python">coords = numpy.fromfile(&#39;./lonlat.bin&#39;)
+</code></pre>
+<hr>
+<p><em>3-28-25</em></p>
+
+      </div>
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
+    </p>
+  </footer>
+</html>
