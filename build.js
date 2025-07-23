@@ -7,15 +7,6 @@ const _ = require('lodash')
 const template = fs.readFileSync('./views/template', 'utf8')
 
 const pages = glob.sync('./pages/*')
-pages.forEach(path => {
-  const name = path.split('/')[path.split('/').length-1]
-  let content = fs.readFileSync(path, 'utf8')
-  content = template.split('{content}').join(content)
-  rm('./'+name)
-  fs.mkdirSync('./'+name)
-  fs.writeFileSync('./'+name+'/index.html', content)
-})
-
 let drafts = glob.sync('./drafts/*').map(d => {
   const file = d.split('/')[d.split('/').length-1]
   const copy = fs.readFileSync(d, 'utf8')
@@ -31,13 +22,30 @@ let drafts = glob.sync('./drafts/*').map(d => {
   }
 })
 drafts = _.sortBy(drafts, 'file').reverse()
+pages.forEach(path => {
+  const name = path.split('/')[path.split('/').length-1]
+  let content = fs.readFileSync(path, 'utf8')
+  let postsList = '<h1>Recent posts</h1>'
+  drafts.forEach((d, i) => {
+    if (i > 4) return
+    postsList += '<p><a href="/post/'+d.url+'">'+d.name+'</a>'
+  })
+  postsList += '<p><a href="/posts/index.html">more...</a>'
+  content +=  marked(postsList)
+  content = template.split('{content}').join(content)
+  rm('./'+name)
+  fs.mkdirSync('./'+name)
+  fs.writeFileSync('./'+name+'/index.html', content)
+  if (name == 'about') {
+    fs.writeFileSync('./index.html', content)
+  }
+})
 
 rm('./posts')
 let postsList = '<hr>'
 drafts.forEach(d => {
   postsList += '<p><a href="/post/'+d.url+'">'+d.name+'</a>'
 })
-
 fs.mkdirSync('./posts')
 fs.writeFileSync('./posts/index.html', template.split('{content}').join(marked(postsList)))
 
@@ -47,8 +55,6 @@ drafts.forEach(d => {
   fs.mkdirSync('./post/'+d.url)
   fs.writeFileSync('./post/'+d.url+'/index.html', d.content)
 })
-
-fs.writeFileSync('./index.html', _.first(drafts).content)
 
 fs.openSync('./rss.xml', 'w');
 fs.unlinkSync('./rss.xml')

@@ -13,31 +13,16 @@
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
       <div id="content">
-      <h1>Worm Helsing</h1>
-<p>Today my friend, <a href="http://xoxodan.com/">Dan Hanf</a>, and I released a game for the <a href="https://itch.io/jam/4mb-jam-2025">4MB game jam</a>. It was the first game jam for both of us, and the first game either of us had released.</p>
-<h2>The 4mb game jam</h2>
-<p>The <a href="https://itch.io/jam/4mb-jam-2025">4MB game jam</a> is a game jam that takes place every other year. The rules of the jam state that every submission must be a standalone desktop application and it must be below 4MB. This year, the theme was <em>&#39;Worms, Holes and Wormholes&#39;</em>, so we naturally decided to make a game about worms, and holes, and... you get the idea.</p>
-<p>In the age of 100GB+ games, multi-dozen-MB web pages****, and <a href="https://nee.lv/2021/02/28/How-I-cut-GTA-Online-loading-times-by-70/">7+ minute loading times</a>, the idea of trying to make something fun with a much smaller footprint was compelling. The submissions included a full 3D FPS in just 21KiB, as well as a puzzle game written in hand coded NASM assembly (2.4KiB).</p>
-<h2>Our game</h2>
-<p><a href="https://morganherlocker.itch.io/worm-helsing">Itch.io / Worm Helsing</a></p>
-<p>Worm Helsing is an isometric hack-n-slash where you explore a procedurally generated warren of vampiric worms as an intrepid explorer. We wrote the game in C using the <a href="https://www.raylib.com/">raylib</a> library. All audio was made by Dan in <a href="https://www.reaper.fm/">Reaper</a>, using a combination of synths and mic&#39;d sounds. I made the sprites and animations in <a href="https://www.aseprite.org/">Aseprite</a>, a simple pixel editing tool, with procedural effects sprinkled in to cut size.</p>
-<p>In the end, we submitted a game that was 1,043 KiB, uncompressed, with no additional dependencies.</p>
-<img src='/img/wormhelsing.gif' style='width:360px'>
-
-<h2>Relative size breakdown</h2>
-<p>Below is a <a href="https://windirstat.net/download.html">windirstat</a> view of the game&#39;s files. The executable was built for Linux Mint, and compressed with UPX. UPX has a long history in the world of demoscene, and works by compressing your program with a thin deflate wrapper that is unpacked at runtime. It has some downsides, in particular we found that Windows antivirus tries hard to prevent the user from executing a program like this, but in the case of a gamejam or demoscene submission, this is forgivable.</p>
-<p><img src="/img/wormhelsing-linuxmint-windirstat.png" alt=""></p>
-<p>As you can see, our exe was the largest component, followed by music. Some of the smaller submissions were able to exploit system resources, like SDL2, which comes preinstalled on Linux Mint, or Win32 for Windows. While I was very pleased with the size of our raylib binary, if we wanted to hit the sub-100KiB tiers, we would reconsider it for a library that could use one of these preinstalled dependencies. Some of the submissions got quite creative with their use of system dependencies, such as using a lib that uses the system web view, or a submission that relied on the system image viewer opened in a 2nd window.</p>
-<h2>Takeaways</h2>
-<ul>
-<li>Creating a game from scratch is really fun! If you&#39;ve ever thought about it, I would recommend having a shot at a simple game you are confident you can ship.</li>
-<li>UPX is helpful for cutting size by 25-60%, but it comes with security tradeoffs that make for a questionable tradeoff for serious apps.</li>
-<li>Foundational dependencies you didn&#39;t write can far outweigh everything else you do write, for a timeboxed endeavor like this. We went in knowing the raylib dependency alone would be larger than some of the other submissions, and for us, it was worth it given our relative lack of experience shipping a full game.</li>
-<li>Raylib was a joy to use, and I never got stuck on any API rough edge at any point. I very rarely even needed google, since reading the headers was enough - I wrote a good chunk of the game while offline in nature.</li>
-</ul>
-<hr>
-<p><em>5-31-25</em></p>
-
+      <p>
+Hi, I am a data researcher and hacker. My interests focus on distributed data processing tools -- mostly targeting maps, satellites, real time physics simulation, and telematics.
+</p>
+<p>
+If you could use my help with an engineering or analysis problem in one of these domains, please reach out.
+</p>
+<p>
+contact: <a href="mailto:morgan.herlocker@gmail.com">email</a>
+</p>
+<img src='/img/about.jpg'></img><h1>Recent posts</h1><p><a href="/post/Fast-data-websites">Fast data websites</a><p><a href="/post/Worm-Helsing">Worm Helsing</a><p><a href="/post/Raw-bin">Raw bin</a><p><a href="/post/globe.c">globe.c</a><p><a href="/post/Mapping-Consensus">Mapping Consensus</a><p><a href="/posts/index.html">more...</a>
       </div>
   </body>
   <footer>

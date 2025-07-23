@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>morgan herlocker</title>
+    <link rel="stylesheet" href="/site.css">
+  </head>
+  <body>
+      <h1><a id="home" href="/">morgan herlocker</a></h1>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
+      <div id="content">
+      <h1>Fast data websites</h1>
+<p>Websites designed around the display of data often suffer from poor performance. This post will explore how to avoid this using the primitives of the browser, by changing how we think about data.</p>
+<p>A minimalist-styled website only requires plain HTML with a bit of vanilla JS for interactivity. This is not an exhaustive list, but these tips are usually sufficient for writing websites that are perceived as shockingly fast to users:</p>
+<ul>
+<li>Don&#39;t allocate objects at runtime after load (preallocate everything). </li>
+<li>Use typed arrays anywhere you need to track more than a handful of things. </li>
+<li>Don&#39;t write string-compare heavy code.</li>
+<li>Don&#39;t write object-as-map/set for more than a handful of elements.</li>
+<li>Flatten any large group of data into a set of typed arrays.</li>
+<li>Network-fetched data should arrive in typed array compatible binary format - it&#39;s easy and a faster format parser is not possible.</li>
+</ul>
+<p>Learning how to do this and learning the basics of HTML, CSS, and JS takes a bit of effort, but unlike framework-stack-o-the-week, you don&#39;t have to restart every few years, since the standards change slowly, with strong backwards compatibility. Think of the browser runtime as a UI framework, like React or QT, because that&#39;s what it ultimately is.</p>
+<p>Usually, when something gets &quot;ported to C&quot; or &quot;ported to Rust&quot; and you see a big speedup, it&#39;s primarily driven by following these patterns, and has very little to do with the choice of language. </p>
+<h2>Latency</h2>
+<p><strong><em>Why are most of the tips above about avoiding certain operations?</em> The speed at which an operation in a program can be performed is driven by the physical distance data must travel.</strong> Norvig and others have compiled helpful lists of latency numbers per operation type, like this one:</p>
+<p><img src="/img/latency-nums.png" alt="latency numbers every programmer should know">
+<a href="https://colin-scott.github.io/personal_website/research/interactive_latency.html">https://colin-scott.github.io/personal_website/research/interactive_latency.html</a></p>
+<p>These are physical constraints, and no magic programming language design can overcome physics. Porting to WASM or vulkan or ____ won&#39;t save you, and it isn&#39;t necessary where fast primitives exist in JS. </p>
+<p>Exceptions exist, such as When native intrinsic libraries like AVX are required to go beyond the performance afforded by a naive data-oriented C implementation for an additional ~5-10x speedup. In these situations, first consider sharding or aggregating your data. If that won&#39;t do, ditch the web and use a lib like SDL3 to build a crossplatform native app. </p>
+<p>Don&#39;t skip ahead in this optimization order - each additional layer comes at cost to accessibility (the single most important quality of a data visualization), so consider the simpler approach carefully before moving on, but don&#39;t be afraid to either. Writing a raylib GUI in C is not that more difficult or different than writing a vanilla style data web page.</p>
+<h2>Setting a baseline</h2>
+<p><a href="https://www.gutenberg.org/files/2600/2600-h/2600-h.htm">War and Peace, Project Guttenberg</a> loads instantly and uses no amount of perceivable CPU on a modern device. I can cmd+f search for strings, and results return instantly. Given this, be confident that your website can comfortably display as much text as a half million+ word novel. Well before this, data visualizations should utilize aggregation for simple practicality reasons.</p>
+<p>Similar examples can be thought of and measured for other types of data. For example, try running a high res video on a simple HTML page to get a feel for runtime cost of a page that rapidly updates every pixel on the screen.</p>
+<p>Understand that if you&#39;re not meeting the baseline comp you&#39;ve set, there is something you have written or (more likely) a dependency that you&#39;ve taken that has blown the budget unneccessarily. Simplify and delete until you are back to baseline.</p>
+<h2>Awareness of runtime</h2>
+<p>When code becomes thousands of times slower than the naive implementation, it is rarely the case that a coder sat down and tried to write something fast, and the slow page was the result. Always set a baseline for the type of page being written, and periodically compare changes against this baseline. As of 2025, the performance profiling tools that come with firefox and chrome are both capable of measuring a page&#39;s performance and describing where the runtime is being spent. </p>
+<p>This process is important when considering dependencies. Simply do not add dependencies that move the needle in a bad direction significantly. Do not add dependencies that take over the runtime. Do not add dependencies that obscure the runtime. <strong>Stay as close to a <code>while(true) {...}</code> update loop as you can manage.</strong> Do this, and adding small functional dependencies is not a big deal - take advantage of the npm ecosystem, and appreciate the small-module-UNIXy philosophy that drove much of early node/JS development. While small libs like leftpad are often bemoaned, small functional libs are easy to replace with a more minimal or optimized implementation in the future, while frameworks only get harder to do the same over time.</p>
+<h2>Screen refresh rate</h2>
+<p>Humans perceive animation when objects move at about 10 fps. It&#39;s tempting to settle here and call it a day. Instead, set a goal at the beginning of authoring a page to maintain the max screen refresh rate of a blank page. This will likely be something like 30 fps, 60 fps, or 140 fps depending on the hardware you have available to test on. Set a hard rule that you won&#39;t ever ship a change that deviates from your objective by 10%. I aim for 140 fps whenever possible, which gives 7-8 ms per frame to play with. If I really need to perform an operation that cannot fit in this budget comfortably, I move it to a worker thread to avoid UI jitter. I never add more than a couple web workers, even when I know most systems could handle it. The point is not to speed things up, but to simply move blocking work off the UI thread. Use the same judgement for these tasks that you would for a networked fetch call, because latency will be in a similar ballpark (10-1000 ms).</p>
+<p><strong>If you take away nothing else from this, take away that you should always maintain a minimum of 60 fps when writing a web page. Don&#39;t do things that make you unsure if you can or have achieved this.</strong></p>
+<hr>
+<p><em>7-22-25</em></p>
+
+      </div>
+  </body>
+  <footer>
+    <p>
+      <hr>
+      <a href="/about">about</a><span style="padding:5px"></span>
+      <a href="/projects">work</a><span style="padding:5px"></span>
+      <a href="https://bsky.app/profile/morganherlocker.bsky.social">bsky</a><span style="padding:5px"></span>
+      <a href="https://github.com/morganherlocker">github</a><span style="padding:5px"></span>
+      <a href="/posts">posts</a><span style="padding:5px"></span>
+      <a href="/rss.xml">rss</a>
+    </p>
+  </footer>
+</html>
