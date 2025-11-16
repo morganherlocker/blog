@@ -93,3 +93,9 @@ code {
   background-color: #565e9244;
   padding: 1px;
 }
+
+blockquote {
+  background-color: #7f8ce444;
+  font-weight: bold;
+  padding-left: 10px;
+}
