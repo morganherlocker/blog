@@ -1,4 +1,33 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>Fast data websites</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Tue, 22 Jul 2025 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Fast-data-websites</link><guid isPermaLink="true">http://morganherlocker.com/post/Fast-data-websites</guid><description><![CDATA[<p>Websites designed around the display of data often suffer from poor performance. This post will explore how to avoid this using the primitives of the browser, by changing how we think about data.</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:webfeeds="http://webfeeds.org/rss/1.0" version="2.0"><channel><title>morganherlocker</title><link>http://morganherlocker.com</link><description>website of @morganherlocker</description><item><title>Control the runtime</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Fri, 07 Nov 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Control-the-runtime</link><guid isPermaLink="true">http://morganherlocker.com/post/Control-the-runtime</guid><description><![CDATA[<p>A dev mantra I&#39;ve come to believe is this:</p>
+<blockquote>
+<p>Control your runtime. Know why your code is running, when it&#39;s running, and how long it&#39;s running. Never let a dependency control your outer loop.</p>
+</blockquote>
+<p>In C, this usually looks something like this:</p>
+<pre><code class="language-c">while(1) {
+    // The things my server does all live here.
+}
+</code></pre>
+<p>...or using raylib:</p>
+<pre><code class="language-c">// raylib
+while (!WindowShouldClose())
+{
+    // Update frame.
+}
+</code></pre>
+<p>In JS, this might look something like this:</p>
+<pre><code class="language-js">requestAnimationFrame(function (){
+    // The things my page does all live here.
+});
+</code></pre>
+<p>I&#39;m not too dogmatic about the particulars (Yes, I&#39;m technically at the mercy of the event loop in both the raylib and JS examples), but I <em>always</em> try to keep this &quot;while loop&quot; mental model in mind. <strong>Once a dependency takes over the outer loop, it becomes part of the platform you are building on</strong>, and comes with a much higher burden of reliability and performance. Dependencies that don&#39;t live up to this should be scrutinized and rejected.</p>
+<p>Serious performance issues are rarely an intentional choice someone makes. They happen when a group of contributors lose track of where and why their code is running. Each block of code looks reasonable in isolation, but the sum of parts leads to frame drops, unexplained pauses, and wait times that can&#39;t be explained by reasoning about the compute and memory available.</p>
+<p>Framework dependencies that promise to manage your runtime are tempting - automatic reactivity, magic horizontal scaling, managed DAG execution, etc. all seem to abstract away performance and coordination concerns. How do we scale complexity without it? <a href="https://cbarrete.com/carmack.html">John Carmack makes a related point about inlining code and the power of visibility combined with simple functional logic flow</a>:</p>
+<blockquote>
+<p>The real enemy addressed by inlining is unexpected dependency and mutation of state, which functional programming solves more directly and completely. However, if you are going to make a lot of state changes, having them all happen inline does have advantages; you should be made constantly aware of the full horror of what you are doing. When it gets to be too much to take, figure out how to factor blocks out into pure functions (and don&#39;t let them slide back into impurity!). </p>
+</blockquote>
+<hr>
+<p><em>11-16-25</em></p>
+]]></description></item><item><title>Fast data websites</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Tue, 22 Jul 2025 07:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Fast-data-websites</link><guid isPermaLink="true">http://morganherlocker.com/post/Fast-data-websites</guid><description><![CDATA[<p>Websites designed around the display of data often suffer from poor performance. This post will explore how to avoid this using the primitives of the browser, by changing how we think about data.</p>
 <p>A minimalist-styled website only requires plain HTML with a bit of vanilla JS for interactivity. This is not an exhaustive list, but these tips are usually sufficient for writing websites that are perceived as shockingly fast to users:</p>
 <ul>
 <li>Don&#39;t allocate objects at runtime after load (preallocate everything). </li>
@@ -102,36 +131,7 @@ for (let idx = 0; idx &lt; coords.length; idx++) {
 </code></pre>
 <hr>
 <p><em>3-28-25</em></p>
-]]></description></item><item><title>Control the runtime</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Fri, 07 Nov 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/Control-the-runtime</link><guid isPermaLink="true">http://morganherlocker.com/post/Control-the-runtime</guid><description><![CDATA[<p>A dev mantra I&#39;ve come to believe is this:</p>
-<blockquote>
-<p>Control your runtime. Know why your code is running, when it&#39;s running, and how long it&#39;s running. Never let a dependency control your outer loop.</p>
-</blockquote>
-<p>In C, this usually looks something like this:</p>
-<pre><code class="language-c">while(1) {
-    // The things my server does all live here.
-}
-</code></pre>
-<p>...or using raylib:</p>
-<pre><code class="language-c">// raylib
-while (!WindowShouldClose())
-{
-    // Update frame.
-}
-</code></pre>
-<p>In JS, this might look something like this:</p>
-<pre><code class="language-js">requestAnimationFrame(function (){
-    // The things my page does all live here.
-});
-</code></pre>
-<p>I&#39;m not too dogmatic about the particulars (Yes, I&#39;m technically at the mercy of the event loop in both the raylib and JS examples), but I <em>always</em> try to keep this &quot;while loop&quot; mental model in mind. <strong>Once a dependency takes over the outer loop, it becomes part of the platform you are building on</strong>, and comes with a much higher burden of reliability and performance. Dependencies that don&#39;t live up to this should be scrutinized and rejected.</p>
-<p>Serious performance issues are rarely an intentional choice someone makes. They happen when a group of contributors lose track of where and why their code is running. Each block of code looks reasonable in isolation, but the sum of parts leads to frame drops, unexplained pauses, and wait times that can&#39;t be explained by reasoning about the compute and memory available.</p>
-<p>Framework dependencies that promise to manage your runtime are tempting - automatic reactivity, magic horizontal scaling, managed DAG execution, etc. all seem to abstract away performance and coordination concerns. How do we scale complexity without it? <a href="https://cbarrete.com/carmack.html">John Carmack makes a related point about inlining code and the power of visibility and simple functional logic flow</a>:</p>
-<blockquote>
-<p>The real enemy addressed by inlining is unexpected dependency and mutation of state, which functional programming solves more directly and completely. However, if you are going to make a lot of state changes, having them all happen inline does have advantages; you should be made constantly aware of the full horror of what you are doing. When it gets to be too much to take, figure out how to factor blocks out into pure functions (and don&#39;t let them slide back into impurity!). </p>
-</blockquote>
-<hr>
-<p><em>11-16-25</em></p>
-]]></description></item><item><title>globe.c</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 27 Feb 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/globe.c</link><guid isPermaLink="true">http://morganherlocker.com/post/globe.c</guid><description><![CDATA[<p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
+]]></description></item><item><title>GLOBE</title><dc:creator>Morgan Herlocker</dc:creator><pubDate>Thu, 27 Feb 2025 08:00:00 GMT</pubDate><link>http://morganherlocker.com/post/GLOBE</link><guid isPermaLink="true">http://morganherlocker.com/post/GLOBE</guid><description><![CDATA[<p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
 <h2>Size</h2>
 <p>Weighing in at 1.8GB raw, GLOBE has a simple file format. The dataset is divided into 18 spatial partitions, each representing a 30 arc-second grid of lon/lat centroids. The files each contain a block of 16 bit signed integers (int16_t), making it straightforward to load in any language that can read contiguous arrays from disk. For example, in python, you could do something like:</p>
 <pre><code class="language-py">np.fromfile(&#39;./a10g&#39;, dtype=np.int16)

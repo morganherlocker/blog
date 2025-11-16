@@ -13,7 +13,7 @@
       <a href="/posts">posts</a><span style="padding:5px"></span>
       <a href="/rss.xml">rss</a>
       <div id="content">
-      <h1>globe.c</h1>
+      <h1>GLOBE</h1>
 <p>I recently decided to <a href="https://github.com/morganherlocker/globe.c">write a parser</a> for NOAA&#39;s Global Land One-kilometer Base Elevation (GLOBE) dataset. Compiled in 1999, GLOBE is a coarse resolution dataset, suitable for climate/weather modelling, non-safety-critical navigation aids, and other tasks where a finer-grained model is not necessary. This dataset is a convenient format for projects that need to approximate the geological features of the Earth on a global scale while maintaining a lightweight memory footprint. 1km resolution is higher than the resolution of most weather models, such as the Global Forecast System, which has a 28km horizontal resolution, and it is a good starting point for applications like games and global basemaps.</p>
 <h2>Size</h2>
 <p>Weighing in at 1.8GB raw, GLOBE has a simple file format. The dataset is divided into 18 spatial partitions, each representing a 30 arc-second grid of lon/lat centroids. The files each contain a block of 16 bit signed integers (int16_t), making it straightforward to load in any language that can read contiguous arrays from disk. For example, in python, you could do something like:</p>
